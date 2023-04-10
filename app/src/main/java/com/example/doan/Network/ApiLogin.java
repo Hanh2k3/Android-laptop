@@ -13,4 +13,7 @@ public interface ApiLogin {
 
     @POST("/api/v1/auth/login")
     Call<UserApiResponse> login(@Body User user);
+
+    @POST("/api/v1/auth/register")
+    Call<UserApiResponse> register(@Body User user);
 }

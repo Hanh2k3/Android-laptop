@@ -1,8 +1,5 @@
 package com.example.doan.ViewModel;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -12,31 +9,34 @@ import com.example.doan.Model.UserApiResponse;
 import com.example.doan.Repository.UserRepository;
 import com.example.doan.Utils.SaveToken;
 
-public class LoginViewModel extends ViewModel {
+public class SignUpViewModel extends ViewModel {
 
-    private MutableLiveData<Boolean> isLogin = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isSignUp = new MutableLiveData<>();
     private MutableLiveData<UserApiResponse> userLiveData = new MutableLiveData<>();
     private UserRepository userRepository;
-    public LoginViewModel() {
+    public SignUpViewModel() {
         userRepository = new UserRepository();
     }
 
     public MutableLiveData<Boolean> getIsLogin() {
-        return isLogin;
+        return isSignUp;
     }
 
-    public  void login(String email, String password) throws InterruptedException {
-        User user = new User(email, password);
-        userRepository.loginUser(user).observeForever(new Observer<UserApiResponse>() {
+    public  void register(User user ) throws InterruptedException {
+        userRepository.registerUser(user).observeForever(new Observer<UserApiResponse>() {
             @Override
             public void onChanged(UserApiResponse userApiResponse) {
                 if(userApiResponse.getStatus() == 1) {
-                    isLogin.setValue(true);
+                    isSignUp.setValue(true);
                     SaveToken.saveTokens(userApiResponse.getToken());
                 } else {
-                    isLogin.setValue(false);
+                    isSignUp.setValue(false);
                 }
             }
         });
+    }
+
+    public MutableLiveData<Boolean> getIsSignUp() {
+        return isSignUp;
     }
 }

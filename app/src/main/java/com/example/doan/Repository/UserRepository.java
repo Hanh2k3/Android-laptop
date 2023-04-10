@@ -1,5 +1,7 @@
 package com.example.doan.Repository;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.doan.Model.User;
@@ -29,11 +31,13 @@ public class UserRepository {
                 if (response.isSuccessful()) {
                     Integer status = response.body().getStatus();
                     String message = response.body().getMessage();
-                    if(status ==1) {
+
+                    if(status == 1) {
                         String token = response.headers().get("Authorization");
                         userLiveData.setValue(new UserApiResponse(status,message, token));
                     } else {
-                        userLiveData.setValue(new UserApiResponse(status,message));
+                        userLiveData.setValue(new UserApiResponse(status,message, null ));
+
                     }
                 }
             }
@@ -45,5 +49,30 @@ public class UserRepository {
     }
     public Integer getStatus() {
         return status;
+    }
+
+    public MutableLiveData<UserApiResponse> registerUser(User user ) {
+        MutableLiveData<UserApiResponse> userLiveData = new MutableLiveData<>();
+        loginService.register(user).enqueue(new Callback<UserApiResponse>() {
+            @Override
+            public void onResponse(Call<UserApiResponse> call, Response<UserApiResponse> response) {
+                if (response.isSuccessful()) {
+                    Integer status = response.body().getStatus();
+                    String message = response.body().getMessage();
+
+                    if(status == 1) {
+                        String token = response.headers().get("Authorization");
+                        userLiveData.setValue(new UserApiResponse(status,message, token));
+                    } else {
+                        userLiveData.setValue(new UserApiResponse(status,message, null ));
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<UserApiResponse> call, Throwable t) {
+            }
+        });
+        return userLiveData;
+
     }
 }

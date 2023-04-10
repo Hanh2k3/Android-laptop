@@ -39,5 +39,4 @@ public class Image {
     public void setLaptopId(Integer laptopId) {
         this.laptopId = laptopId;
     }
-
 }
