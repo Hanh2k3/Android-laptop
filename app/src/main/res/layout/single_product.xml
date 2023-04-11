@@ -77,9 +77,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/metropolis_light"
-            android:textColor="@color/textAd"
             android:maxLines="1"
+            android:paddingStart="5dp"
+            android:paddingBottom="5dp"
             android:text="Brand Name"
+            android:textColor="@color/textAd"
             android:textSize="13sp" />
 
         <TextView
@@ -90,7 +92,9 @@
             android:textColor="@color/mainText"
             android:maxLines="1"
             android:text="Product Name"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:paddingStart="5dp"
+            android:paddingBottom="5dp" />
 
         <TextView
             android:id="@+id/productPrice_singleProduct"
@@ -101,7 +105,10 @@
             android:maxLines="1"
             android:text="Product Price"
             android:textColor="@color/primary"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:paddingStart="5dp"
+            android:paddingBottom="5dp"/>
 
     </LinearLayout>
 
