@@ -245,6 +245,7 @@
                         android:layout_marginLeft="10dp"
                         android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
