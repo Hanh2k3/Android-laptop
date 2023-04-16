@@ -19,28 +19,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BuyNow">
         <activity
-            android:name="com.example.doan.View.activity.TestActivity"
+            android:name=".LaptopDetailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".TestActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.doan.View.activity.HomeActivity"
+            android:name=".HomeActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.doan.View.activity.SignUpActivity"
+            android:name=".SignUpActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.doan.View.activity.LoginActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
