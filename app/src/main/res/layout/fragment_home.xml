@@ -14,17 +14,17 @@
         android:layout_height="wrap_content">
 
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/coverRecView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="450dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            tools:listitem="@layout/cover_single">-->
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/coverRecView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="450dp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            tools:listitem="@layout/cover_single">-->
 
 
-<!--        </androidx.recyclerview.widget.RecyclerView>-->
+        <!--        </androidx.recyclerview.widget.RecyclerView>-->
 
 
         <LinearLayout
@@ -74,6 +74,30 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edt_search"
+                    android:ems="10"
+                    android:hint="Search..."
+                    android:layout_marginBottom="20dp"
+                    android:padding="5dp"
+                    android:drawableRight="@drawable/ic_search_home"
+                   android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:inputType="textPersonName" />
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent" />-->
+<!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -127,10 +151,20 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/single_product">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                tools:listitem="@layout/single_product"/>
         </LinearLayout>
+
+        <!--        <com.airbnb.lottie.LottieAnimationView-->
+<!--            android:id="@+id/animationView"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:lottie_rawRes="@raw/circle_progress" />-->
+
         <LinearLayout
             android:id="@+id/saleLayout"
             android:layout_width="match_parent"
@@ -140,6 +174,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newLayout">
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -201,17 +237,6 @@
 
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
-
-<!--        <com.airbnb.lottie.LottieAnimationView-->
-<!--            android:id="@+id/animationView"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:visibility="gone"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:lottie_rawRes="@raw/circle_progress" />-->
 
         <ImageView
             android:id="@+id/visualSearchBtn_homePage"
