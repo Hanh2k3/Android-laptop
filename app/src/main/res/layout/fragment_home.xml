@@ -151,10 +151,19 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/single_product">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                tools:listitem="@layout/single_product"/>
         </LinearLayout>
+
+        <!--        <com.airbnb.lottie.LottieAnimationView-->
+<!--            android:id="@+id/animationView"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:lottie_rawRes="@raw/circle_progress" />-->
 
         <LinearLayout
             android:id="@+id/saleLayout"
@@ -165,6 +174,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newLayout">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -223,22 +233,10 @@
                 android:id="@+id/saleRecView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                >
+                android:layout_marginTop="20dp">
 
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
-
-<!--        <com.airbnb.lottie.LottieAnimationView-->
-<!--            android:id="@+id/animationView"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:visibility="gone"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:lottie_rawRes="@raw/circle_progress" />-->
 
         <ImageView
             android:id="@+id/visualSearchBtn_homePage"
