@@ -12,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.doan.Model.Category;
 import com.example.doan.Model.Image;
 import com.example.doan.Model.Laptop;
-import com.example.doan.Model.Slider;
 import com.example.doan.R;
 import com.example.doan.View.activity.LaptopDetailsActivity;
 import com.squareup.picasso.Picasso;
@@ -22,26 +22,28 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoverLaptopAdapter extends RecyclerView.Adapter<CoverLaptopAdapter.ViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private Context ctx;
-    private List<Slider> coverLaptopList;
+    private List<Category> categoriesList;
 
-    public CoverLaptopAdapter(Context ctx, List<Slider> coverLaptopList) {
+    public CategoryAdapter(Context ctx, List<Category> categoriesList) {
         this.ctx = ctx;
-        this.coverLaptopList = coverLaptopList;
+        this.categoriesList = categoriesList;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View LaptopView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cover_single, parent, false);
+        View LaptopView = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_single, parent, false);
         return new ViewHolder(LaptopView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Slider laptop = coverLaptopList.get(position);
-        String path = laptop.getPath();
-        Picasso.get().load(String.valueOf(path)).into(holder.laptopImage_coverPage);
+        Category  category = categoriesList.get(position);
+        String path = category.getCategoryImage();
+        String name = category.getCategoryName() ;
+        holder.categoryTitle.setText(name);
+        Picasso.get().load(String.valueOf(path)).into(holder.categoryImage);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,17 +53,20 @@ public class CoverLaptopAdapter extends RecyclerView.Adapter<CoverLaptopAdapter.
     }
     @Override
     public int getItemCount() {
-        return coverLaptopList.size();
+        return categoriesList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView laptopImage_coverPage;
+        ImageView categoryImage;
+        TextView categoryTitle;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            laptopImage_coverPage = itemView.findViewById(R.id.laptopImage_coverPage);
+            categoryImage = itemView.findViewById(R.id.categoryImage_CateSingle);
+            categoryTitle = itemView.findViewById(R.id.categoryName_CateSingle);
+
         }
     }
-
     private void goDetailsPage(int position) {
 
     }

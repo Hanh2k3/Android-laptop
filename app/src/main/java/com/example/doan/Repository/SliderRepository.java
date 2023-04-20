@@ -25,7 +25,6 @@ public class SliderRepository {
 
     public MutableLiveData<List<com.example.doan.Model.Slider>> getSliders() {
         MutableLiveData<List<com.example.doan.Model.Slider>> liveData = new MutableLiveData<>();
-
         sliderService.getSliders().enqueue(new Callback<GeneralResponse<com.example.doan.Model.Slider>>() {
             @Override
             public void onResponse(Call<GeneralResponse<com.example.doan.Model.Slider>> call, Response<GeneralResponse<com.example.doan.Model.Slider>> response) {
@@ -44,4 +43,6 @@ public class SliderRepository {
         });
         return liveData;
     }
+
+
 }

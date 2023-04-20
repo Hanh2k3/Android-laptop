@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData;
 
 
 import com.example.doan.Model.DataResponse;
-import com.example.doan.Model.LaptopResponse;
 import com.example.doan.Network.ApiLaptop;
 import com.example.doan.Network.RetrofitClient;
 
@@ -36,17 +35,33 @@ public class LaptopRepository {
         return  liveData;
     }
 
-    public  MutableLiveData<LaptopResponse> getLaptop(Integer id) {
-        MutableLiveData<LaptopResponse> liveData = new MutableLiveData<>();
-        laptopService.getLaptop(id).enqueue(new Callback<LaptopResponse>() {
+    public  MutableLiveData<DataResponse> getLaptop(Integer id) {
+        MutableLiveData<DataResponse> liveData = new MutableLiveData<>();
+        laptopService.getLaptop(id).enqueue(new Callback<DataResponse>() {
             @Override
-            public void onResponse(Call<LaptopResponse> call, Response<LaptopResponse> response) {
+            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
                 if(response.isSuccessful()) {
                     liveData.setValue(response.body());
                 }
             }
             @Override
-            public void onFailure(Call<LaptopResponse> call, Throwable t) {
+            public void onFailure(Call<DataResponse> call, Throwable t) {
+
+            }
+        });
+        return  liveData;
+    }
+    public  MutableLiveData<DataResponse> getCategoryLaptop(Integer id) {
+        MutableLiveData<DataResponse> liveData = new MutableLiveData<>();
+        laptopService.getCategoryLaptop(id).enqueue(new Callback<DataResponse>() {
+            @Override
+            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+                if(response.isSuccessful()) {
+                    liveData.setValue(response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<DataResponse> call, Throwable t) {
 
             }
         });

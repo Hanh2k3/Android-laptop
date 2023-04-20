@@ -16,7 +16,6 @@ public class GeneralResponse<T>  {
     @SerializedName("data")
     @Expose
     private List<T> data;
-
     public Integer getStatus() {
         return status;
     }

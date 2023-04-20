@@ -35,9 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     private  TextView passwordError ;
     private LoadingDialog loadingDialog;
     private LoginViewModel loginViewModel ;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -151,7 +151,7 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/single_product"/>
+                tools:listitem="@layout/single_product" />
         </LinearLayout>
 
         <!--        <com.airbnb.lottie.LottieAnimationView-->

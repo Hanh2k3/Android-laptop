@@ -1,34 +1,27 @@
 package com.example.doan.Model;
 
-
-import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Slider {
-
+public class Category {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("path")
+    @SerializedName("category_name")
     @Expose
-    private String path;
-    @SerializedName("image_name")
+    private String categoryName;
+    @SerializedName("category_image")
     @Expose
-    private String imageName;
+    private String categoryImage;
+    @SerializedName("status")
+    @Expose
+    private Integer status;
     @SerializedName("createdAt")
     @Expose
     private String createdAt;
     @SerializedName("updatedAt")
     @Expose
     private String updatedAt;
-
-    private ScaleTypes scaleTypes;
-
-    public Slider(String path, ScaleTypes scaleTypes) {
-        this.path = path;
-        this.scaleTypes = scaleTypes;
-    }
 
     public Integer getId() {
         return id;
@@ -38,20 +31,28 @@ public class Slider {
         this.id = id;
     }
 
-    public String getPath() {
-        return path;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public String getImageName() {
-        return imageName;
+    public String getCategoryImage() {
+        return categoryImage;
     }
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
+    public void setCategoryImage(String categoryImage) {
+        this.categoryImage = categoryImage;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getCreatedAt() {
@@ -69,5 +70,4 @@ public class Slider {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
-
 }
