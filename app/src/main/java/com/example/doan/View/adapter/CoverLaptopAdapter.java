@@ -1,8 +1,13 @@
 package com.example.doan.View.adapter;
 
+
+
+import static android.app.PendingIntent.getActivity;
+import static androidx.core.content.ContextCompat.getAttributionTag;
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +16,13 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.denzcoskun.imageslider.models.SlideModel;
-import com.example.doan.Model.Image;
-import com.example.doan.Model.Laptop;
+import com.example.doan.Model.Category;
 import com.example.doan.Model.Slider;
 import com.example.doan.R;
-import com.example.doan.View.activity.LaptopDetailsActivity;
+import com.example.doan.View.activity.CateogryActivity;
+import com.example.doan.View.activity.HomeActivity;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CoverLaptopAdapter extends RecyclerView.Adapter<CoverLaptopAdapter.ViewHolder> {
@@ -65,4 +68,6 @@ public class CoverLaptopAdapter extends RecyclerView.Adapter<CoverLaptopAdapter.
     private void goDetailsPage(int position) {
 
     }
+
+
 }

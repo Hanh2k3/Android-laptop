@@ -35,9 +35,15 @@ public class LaptopAdapter extends RecyclerView.Adapter<LaptopAdapter.LaptopHold
     class LaptopHolder extends RecyclerView.ViewHolder {
 
         ImageView laptopImage ;
+        TextView laptopName;
+        TextView  laptopPrice  ;
+        TextView laptopBrand ;
         public LaptopHolder(View itemView) {
             super(itemView);
             laptopImage = itemView.findViewById(R.id.productImage_singleProduct);
+            laptopName = itemView.findViewById(R.id.productName_singleProduct);
+            laptopPrice = itemView.findViewById(R.id.productPrice_singleProduct);
+            laptopBrand = itemView.findViewById(R.id.productBrandName_singleProduct);
         }
 
     }
@@ -53,7 +59,11 @@ public class LaptopAdapter extends RecyclerView.Adapter<LaptopAdapter.LaptopHold
         List<Image> images = laptop.getImages();
         String path = images.get(0).getPath();
         Picasso.get().load(path).into(holder.laptopImage);
-       // holder.laptopImage.setImageURI(Uri.parse("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_P6RQ5FtcCdFJKHQscsJrxfoNFqvRRByv1q8VH5Dv&s"));
+        holder.laptopPrice.setText(laptop.getPrice() + "đ");
+        holder.laptopName.setText(laptop.getLaptopName());
+        holder.laptopBrand.setText(laptop.getBrand().getBrandName());
+
+    // holder.laptopImage.setImageURI(Uri.parse("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_P6RQ5FtcCdFJKHQscsJrxfoNFqvRRByv1q8VH5Dv&s"));
 //        holder.discount.setVisibility(View.VISIBLE);
       //  holder.tvDiscount.setText("New")
         holder.itemView.setOnClickListener(new View.OnClickListener() {

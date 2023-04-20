@@ -28,7 +28,6 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText edtName ;
     private EditText edtPassword ;
     private EditText edtConfirmPassword ;
-
     private Button btnSignUp ;
     private TextView textSignIn ;
     private String emailPattern ;

@@ -2,7 +2,6 @@ package com.example.doan.View.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +10,11 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.doan.Model.Category;
-import com.example.doan.Model.Image;
-import com.example.doan.Model.Laptop;
 import com.example.doan.R;
-import com.example.doan.View.activity.LaptopDetailsActivity;
+import com.example.doan.View.activity.CateogryActivity;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
@@ -68,6 +63,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         }
     }
     private void goDetailsPage(int position) {
-
+        Intent i = new Intent(ctx, CateogryActivity.class);
+        i.putExtra("category_id" , categoriesList.get(position).getId());
+        i.putExtra("categoryName", categoriesList.get(position).getCategoryName());
+        ctx.startActivity(i);
     }
 }
