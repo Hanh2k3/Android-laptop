@@ -44,6 +44,7 @@
             android:hint="Full Name"
             android:inputType="textPersonName"
             android:maxLines="1" />
+
         <EditText
             android:layout_marginTop="10dp"
             android:id="@+id/emailEt_signUpPage"
@@ -75,21 +76,22 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:maxLines="1" />
+
         <EditText
-            android:layout_marginTop="10dp"
             android:id="@+id/cPassEt_signUpPage"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:textSize="15sp"
-            android:textColor="@color/mainText"
-            android:drawableRight="@null"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_bg"
+            android:drawableRight="@null"
             android:fontFamily="@font/metropolis_regular"
             android:hint="Confirm Password"
             android:inputType="textPassword"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="@color/mainText"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/signUpBtn_signUpPage"
