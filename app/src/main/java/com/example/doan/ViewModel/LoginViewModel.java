@@ -14,9 +14,9 @@ import com.example.doan.Utils.SaveToken;
 
 public class LoginViewModel extends ViewModel {
 
-    private MutableLiveData<Boolean> isLogin = new MutableLiveData<>();
-    private MutableLiveData<UserApiResponse> userLiveData = new MutableLiveData<>();
-    private UserRepository userRepository;
+    private final MutableLiveData<Boolean> isLogin = new MutableLiveData<>();
+    private final MutableLiveData<UserApiResponse> userLiveData = new MutableLiveData<>();
+    private final UserRepository userRepository;
     public LoginViewModel() {
         userRepository = new UserRepository();
     }
