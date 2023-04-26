@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.doan.Model.Laptop;
@@ -26,6 +28,7 @@ public class CateogryActivity extends AppCompatActivity {
     private TextView categoryName ;
     private RecyclerView recyclerCategories ;
     private HomeViewModel homeViewModel ;
+    private ImageView backView ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,14 @@ public class CateogryActivity extends AppCompatActivity {
         String name = i.getStringExtra("categoryName");
         categoryName = findViewById(R.id.categoryName);
         recyclerCategories = findViewById(R.id.recycleCategory);
+        backView = findViewById(R.id.searchIv_ProfileFrag);
+
+        backView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         categoryName.setText(name);
 

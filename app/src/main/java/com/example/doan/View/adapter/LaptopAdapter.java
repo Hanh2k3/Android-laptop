@@ -18,8 +18,10 @@ import com.example.doan.Model.Laptop;
 import com.example.doan.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class LaptopAdapter extends RecyclerView.Adapter<LaptopAdapter.LaptopHolder> {
 
@@ -59,7 +61,10 @@ public class LaptopAdapter extends RecyclerView.Adapter<LaptopAdapter.LaptopHold
         List<Image> images = laptop.getImages();
         String path = images.get(0).getPath();
         Picasso.get().load(path).into(holder.laptopImage);
-        holder.laptopPrice.setText(laptop.getPrice() + "đ");
+        Double value = Double.valueOf(laptop.getPrice()*laptop.getQty());
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+        holder.laptopPrice.setText(nf.format(Double.valueOf(laptop.getPrice())) + "đ");
         holder.laptopName.setText(laptop.getLaptopName());
         holder.laptopBrand.setText(laptop.getBrand().getBrandName());
 

@@ -21,12 +21,11 @@
 
         <ImageView
             android:id="@+id/searchIv_ProfileFrag"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ic_back"
-            app:tint="@color/mainText"
-            />
+            app:tint="@color/mainText" />
 
         <TextView
             android:id="@+id/textView2"

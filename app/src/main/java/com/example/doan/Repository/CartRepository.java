@@ -1,8 +1,13 @@
 package com.example.doan.Repository;
 
+import static com.example.doan.Utils.SaveToken.getToken;
+
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 
+import com.example.doan.Model.CartUpdate;
 import com.example.doan.Model.DataResponse;
 import com.example.doan.Network.ApiCart;
 import com.example.doan.Network.RetrofitClient;
@@ -13,7 +18,7 @@ import retrofit2.Response;
 
 public class CartRepository {
 
-    private ApiCart cartService ;
+    private static  ApiCart cartService ;
     private DataResponse dataResponse ;
 
     public CartRepository() {
@@ -36,6 +41,47 @@ public class CartRepository {
         });
 
         return  liveData;
-
     }
+    public static   MutableLiveData<Boolean> removeItem(Integer position) {
+        MutableLiveData<Boolean> rs = new MutableLiveData<>();
+
+        cartService.removeItem(getToken(), position).enqueue(new Callback<DataResponse>() {
+            @Override
+            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+                Log.d(" Da vaof ", "oenee ");
+                if(response.isSuccessful()) {
+                    Integer status = response.body().getStatus();
+                    if(status == 1 ) {
+                        rs.setValue(true);
+                    } else rs.setValue(false);
+                }
+            }
+            @Override
+            public void onFailure(Call<DataResponse> call, Throwable t) {
+
+            }
+        });
+        return rs;
+    }
+    public static   MutableLiveData<Boolean> updateItem(Integer laptop_id, Integer qty) {
+        MutableLiveData<Boolean> rs = new MutableLiveData<>();
+
+        cartService.updateItem(getToken(), laptop_id, new CartUpdate(qty)).enqueue(new Callback<DataResponse>() {
+            @Override
+            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+                if(response.isSuccessful()) {
+                    Integer status = response.body().getStatus();
+                    if(status == 1 ) {
+                        rs.setValue(true);
+                    } else rs.setValue(false);
+                }
+            }
+            @Override
+            public void onFailure(Call<DataResponse> call, Throwable t) {
+
+            }
+        });
+        return rs;
+    }
+
 }

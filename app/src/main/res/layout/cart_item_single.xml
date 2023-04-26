@@ -15,6 +15,7 @@
         app:cardBackgroundColor="@color/backgroundAd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toTopOf="parent" >
 
         <LinearLayout
@@ -70,12 +71,12 @@
                         android:elevation="5dp">
 
                         <ImageView
+                            android:id="@+id/decreaseCart_item"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/ic_baseline_remove_24"
                             android:padding="8dp"
-                            app:tint="@color/mainText"
-                            />
+                            android:src="@drawable/ic_baseline_remove_24"
+                            app:tint="@color/mainText" />
 
                     </LinearLayout>
 
@@ -99,7 +100,7 @@
                         android:elevation="5dp">
 
                         <ImageView
-                            android:id="@+id/plusLayout"
+                            android:id="@+id/plusLayout_item"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_baseline_add_24"
@@ -115,16 +116,25 @@
             <LinearLayout
 
                 android:layout_width="40dp"
+                android:orientation="vertical"
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/cartDel"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_baseline_clear_24"
+                    app:tint="@color/mainText" />
+
+                <ImageView
+                    android:id="@+id/cartUpdate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/cartMore"
-                    android:src="@drawable/ic_baseline_clear_24"
-                    app:tint="@color/mainText"
-                    />
+                    android:layout_weight="1"
+                    android:src="@drawable/icon_done"
+                    app:tint="@color/mainText" />
 
             </LinearLayout>
 
