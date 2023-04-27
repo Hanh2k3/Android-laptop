@@ -38,6 +38,13 @@ public class Laptop {
     @SerializedName("Brand")
     @Expose
     private Brand brand;
+
+    public Laptop(Integer id, String laptopName, List<Image> images) {
+        this.id = id;
+        this.laptopName = laptopName;
+        this.images = images;
+    }
+
     @SerializedName("category")
     @Expose
     private List<String> category;

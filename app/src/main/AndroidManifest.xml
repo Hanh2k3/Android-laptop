@@ -20,8 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BuyNow">
         <activity
-            android:name="com.example.doan.View.activity.SettingActivity"
+            android:name="com.example.doan.View.activity.OrderActivity"
+            android:exported="false" />
 
+        <activity
+            android:name="com.example.doan.View.activity.SettingActivity"
             android:exported="false" />
         <activity
             android:name="com.example.doan.View.activity.CateogryActivity"
@@ -65,7 +68,7 @@
         </activity>
         <activity
             android:name="com.example.doan.View.activity.LaptopDetailActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -22,6 +22,8 @@ import com.example.doan.Model.Category;
 import com.example.doan.Model.Slider;
 import com.example.doan.Model.UserProfile;
 import com.example.doan.R;
+import com.example.doan.View.activity.HomeActivity;
+import com.example.doan.View.activity.OrderActivity;
 import com.example.doan.View.activity.SettingActivity;
 import com.example.doan.View.adapter.CategoryAdapter;
 import com.example.doan.View.adapter.CoverLaptopAdapter;
@@ -90,6 +92,8 @@ public class ProfileFragment extends Fragment {
         orderCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(getActivity(), OrderActivity.class);
+                startActivity(i);
             }
         });
         settingCard.setOnClickListener(new View.OnClickListener() {
