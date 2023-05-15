@@ -85,6 +85,12 @@
             android:layout_marginTop="5dp"
             />
 
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save login" />
+
         <TextView
             android:id="@+id/forgottenPassTv"
             android:layout_width="match_parent"

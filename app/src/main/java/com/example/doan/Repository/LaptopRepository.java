@@ -4,8 +4,12 @@ import androidx.lifecycle.MutableLiveData;
 
 
 import com.example.doan.Model.DataResponse;
+import com.example.doan.Model.Laptop;
+import com.example.doan.Model.LaptopResponse;
 import com.example.doan.Network.ApiLaptop;
 import com.example.doan.Network.RetrofitClient;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,21 +39,24 @@ public class LaptopRepository {
         return  liveData;
     }
 
-    public  MutableLiveData<DataResponse> getLaptop(Integer id) {
-        MutableLiveData<DataResponse> liveData = new MutableLiveData<>();
-        laptopService.getLaptop(id).enqueue(new Callback<DataResponse>() {
+    public  MutableLiveData<Laptop> getLaptop(Integer id) {
+        MutableLiveData<Laptop> data = new MutableLiveData<>();
+        laptopService.getLaptop(id).enqueue(new Callback<LaptopResponse>() {
             @Override
-            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+            public void onResponse(Call<LaptopResponse> call, Response<LaptopResponse> response) {
                 if(response.isSuccessful()) {
-                    liveData.setValue(response.body());
+                    if(response.body().getStatus() == 1) {
+                        Laptop laptop = response.body().getLaptop();
+                        data.setValue(laptop);
+                    }
                 }
             }
             @Override
-            public void onFailure(Call<DataResponse> call, Throwable t) {
+            public void onFailure(Call<LaptopResponse> call, Throwable t) {
 
             }
         });
-        return  liveData;
+        return  data ;
     }
     public  MutableLiveData<DataResponse> getCategoryLaptop(Integer id) {
         MutableLiveData<DataResponse> liveData = new MutableLiveData<>();
@@ -66,6 +73,27 @@ public class LaptopRepository {
             }
         });
         return  liveData;
+    }
+
+    public MutableLiveData<List<Laptop>> getCommendLaptop(Integer id) {
+        MutableLiveData<List<Laptop>> data = new MutableLiveData<>();
+        laptopService.getCommendLaptop(id).enqueue(new Callback<DataResponse>() {
+            @Override
+            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+                if(response.isSuccessful()) {
+                    if(response.body().getStatus() == 1) {
+                        List<Laptop> listLaptop = response.body().getData().getRows();
+                        data.setValue(listLaptop);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataResponse> call, Throwable t) {
+
+            }
+        });
+        return data ;
     }
 
 }

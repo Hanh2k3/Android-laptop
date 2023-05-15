@@ -7,7 +7,6 @@
     android:background="@color/background">
 
 
-
     <LinearLayout
         android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
@@ -46,16 +45,31 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/flOrder"
-        android:layout_width="414dp"
-        android:layout_height="644dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout9">
+    <LinearLayout
 
-    </FrameLayout>
+        android:layout_width="413dp"
+        android:layout_height="599dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
+        app:layout_constraintVertical_bias="0.958">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabSelectedTextColor="#0B3FDC"
+            tools:layout_editor_absoluteX="1dp" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

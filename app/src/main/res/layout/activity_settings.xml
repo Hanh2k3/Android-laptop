@@ -29,10 +29,6 @@
             app:tint="@color/mainText"
             />
 
-        <androidx.legacy.widget.Space
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
         <ImageView
             android:id="@+id/searchIv_ProfileFrag"
             android:layout_width="20dp"
@@ -98,6 +94,11 @@
 
 <!--        </LinearLayout>-->
 
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -161,7 +162,12 @@
             android:layout_marginLeft="10dp"
             android:elevation="10dp"
             />
+
+
     </LinearLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

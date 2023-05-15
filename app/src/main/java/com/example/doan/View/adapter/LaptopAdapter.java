@@ -1,6 +1,7 @@
 package com.example.doan.View.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.doan.Model.Image;
 import com.example.doan.Model.Laptop;
 import com.example.doan.R;
+import com.example.doan.View.activity.DetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
@@ -74,13 +76,14 @@ public class LaptopAdapter extends RecyclerView.Adapter<LaptopAdapter.LaptopHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               goToDetail(position);
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("laptopId", laptop.getId());
+                context.startActivity(intent);
             }
         });
     }
 
-    private void goToDetail(int position) {
-    }
+
 
     @Override
     public int getItemCount() {

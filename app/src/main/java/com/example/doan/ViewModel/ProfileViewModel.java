@@ -8,6 +8,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.doan.Model.Category;
 import com.example.doan.Model.DataResponse;
+import com.example.doan.Model.InforShipping;
 import com.example.doan.Model.Laptop;
 import com.example.doan.Model.Slider;
 import com.example.doan.Model.UserProfile;
@@ -15,6 +16,7 @@ import com.example.doan.Repository.CategoryRepository;
 import com.example.doan.Repository.LaptopRepository;
 import com.example.doan.Repository.ProfileRepository;
 import com.example.doan.Repository.SliderRepository;
+import com.example.doan.Repository.UserRepository;
 
 import java.util.List;
 import java.util.Vector;
@@ -23,9 +25,12 @@ import java.util.Vector;
 public class ProfileViewModel extends ViewModel {
 
     private ProfileRepository profileRepository;
+    private static UserRepository userRepository ;
     private MutableLiveData<UserProfile> userProfile = new MutableLiveData<>();
+    private static MutableLiveData<List<InforShipping>> listInforShipping = new MutableLiveData<>();
     public ProfileViewModel() {
         this.profileRepository = new ProfileRepository();
+        this.userRepository = new UserRepository();
     }
 
     public MutableLiveData<UserProfile> getUserProfile() {
@@ -41,4 +46,37 @@ public class ProfileViewModel extends ViewModel {
         });
 
     }
+
+    public MutableLiveData<List<InforShipping>> getListInforShipping() {
+        return listInforShipping;
+    }
+
+    public static void setValueAddress(String token) {
+        userRepository.getAllAdress(token).observeForever(new Observer<List<InforShipping>>() {
+            @Override
+            public void onChanged(List<InforShipping> inforShippings) {
+                if(inforShippings != null) {
+                    listInforShipping.setValue(inforShippings);
+
+                } else listInforShipping.setValue(null);
+            }
+        });
+    }
+
+     static  public void updateAddress(String token, int id) {
+
+        userRepository.updateAddress(token, id).observeForever(new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    setValueAddress(token);
+                }
+            }
+        });
+
+
+
+    }
+
+
 }

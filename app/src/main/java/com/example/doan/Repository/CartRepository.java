@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 
+import com.example.doan.Model.CartRequest;
 import com.example.doan.Model.CartUpdate;
 import com.example.doan.Model.DataResponse;
 import com.example.doan.Network.ApiCart;
@@ -82,6 +83,27 @@ public class CartRepository {
             }
         });
         return rs;
+    }
+
+    public  MutableLiveData<Boolean> insertCart(CartRequest cartRequest) {
+        MutableLiveData<Boolean> rs = new MutableLiveData<>();
+        cartService.insertItemCart(getToken(), cartRequest).enqueue(new Callback<DataResponse>() {
+            @Override
+            public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
+                if(response.isSuccessful()) {
+                    if(response.body().getStatus() == 1) {
+                        // add success
+                        rs.setValue(true);
+                    } else rs.setValue(false);
+                }
+            }
+            @Override
+            public void onFailure(Call<DataResponse> call, Throwable t) {
+
+            }
+        });
+
+        return rs ;
     }
 
 }

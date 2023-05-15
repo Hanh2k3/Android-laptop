@@ -14,7 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.doan.Model.CartUpdate;
 import com.example.doan.Model.Image;
 import com.example.doan.Model.Laptop;
 import com.example.doan.R;
@@ -34,7 +33,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public CartAdapter(Context context, List<Laptop> listLaptop ) {
         this.context = context;
         this.listLaptop = listLaptop;
-
 
     }
 
@@ -64,8 +62,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             public void onClick(View v) {
                 delItem(position);
             }
-
-
         });
 
 
@@ -118,8 +114,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
             laptopImage = itemView.findViewById(R.id.cartImage);
-            laptopName = itemView.findViewById(R.id.cartName);
-            laptopPrice = itemView.findViewById(R.id.cartPrice);
+            laptopName = itemView.findViewById(R.id.tvAddressShipping);
+            laptopPrice = itemView.findViewById(R.id.tvPhoneShipping);
             laptopQty = itemView.findViewById(R.id.quantityTvCart);
             decrease = itemView.findViewById(R.id.decreaseCart_item);
             increase = itemView.findViewById(R.id.plusLayout_item);

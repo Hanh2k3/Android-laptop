@@ -20,57 +20,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-<!--            <ImageView-->
-<!--                android:id="@+id/productImage_ProductDetailsPage"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="450dp"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.0"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-         <androidx.recyclerview.widget.RecyclerView
-             android:id="@+id/recycleImageDetail"
-             android:layout_width="match_parent"
-             android:layout_height="350dp"
-             app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="parent"
-             app:layout_constraintHorizontal_bias="0.0"
-             tools:listitem="@layout/cover_single"
-             tools:ignore="MissingConstraints">
-         </androidx.recyclerview.widget.RecyclerView>
             <LinearLayout
                 android:id="@+id/topBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/linearLayout6">
 
 
                 <ImageView
-                    android:id="@+id/backIv_ProfileFrag"
+                    android:id="@+id/back_detail"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_back"
                     app:tint="@color/black" />
 
                 <androidx.legacy.widget.Space
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
                 <ImageView
                     android:id="@+id/searchIv_ProfileFrag"
                     android:layout_width="30dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/ic_search"
-                    />
+                    android:src="@drawable/ic_search" />
 
             </LinearLayout>
 
@@ -80,39 +58,39 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recycleImageDetail">
+                app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleImageDetail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
+                    android:layout_height="350dp"
+                    android:layout_marginTop="40dp"
+                    tools:ignore="MissingConstraints"
+                    tools:listitem="@layout/cover_single">
 
-                    <TextView
-                        android:id="@+id/productName_ProductDetailsPage"
-                        android:layout_width="0dp"
-                        android:maxEms="30"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:fontFamily="@font/metropolis_semibold"
-                        android:text="Laptop Gaming Asus TUF "
-                        android:maxLines="2"
-                        android:textColor="@color/mainText"
-                        android:textSize="26sp" />
+                </androidx.recyclerview.widget.RecyclerView>
 
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/productName_ProductDetailsPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/metropolis_semibold"
+                    android:maxEms="30"
+                    android:maxLines="2"
+                    android:text="Laptop Gaming Asus TUF "
+                    android:textColor="@color/mainText"
+                    android:textSize="26sp" />
 
                 <LinearLayout
-                    android:layout_width="391dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
+                    android:layout_width="401dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
 
                     <TextView
                         android:id="@+id/productPrice_ProductDetailsPage"
@@ -125,23 +103,6 @@
                         android:textColor="#EC0F0F"
                         android:textSize="23sp" />
 
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="20dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                       android:layout_gravity="end"
-                        app:srcCompat="@drawable/archive_add_svgrepo_com" />
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="401dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
                     <TextView
                         android:id="@+id/productBrand_ProductDetailsPage"
                         android:layout_width="match_parent"
@@ -150,7 +111,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/metropolis_regular"
-                        android:text="Đánh giá"
+                        android:text="Evaluate"
                         android:textColor="@color/mainText"
                         android:textSize="13sp" />
 
@@ -167,55 +128,38 @@
                         android:transformPivotX="0dp"
                         android:transformPivotY="15dp" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabLayOutDetailPage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:tabSelectedTextColor="#0B3FDC"
+                            tools:layout_editor_absoluteX="1dp" />
+
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/viewPagerDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Thêm vào yêu thích"
-                        >
-                    </TextView>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tabLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:tabMode="fixed"
-                        app:tabGravity="fill">
-
-                        <com.google.android.material.tabs.TabItem
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Mô tả" />
-
-                        <com.google.android.material.tabs.TabItem
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Bình luận" />
-
-                        <com.google.android.material.tabs.TabItem
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Đánh giá" />
-                    </com.google.android.material.tabs.TabLayout>
                 </LinearLayout>
 
             </LinearLayout>
@@ -225,7 +169,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
@@ -249,7 +192,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/metropolis_semibold"
-                            android:text="Sản phẩm liên quan"
+                            android:text="Related products"
                             android:textColor="@color/mainText"
                             android:textSize="25sp" />
 
@@ -284,17 +227,15 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginBottom="20dp"
                     android:id="@+id/RecomRecView_ProductDetailsPage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    tools:listitem="@layout/single_product"
-                    >
+                    android:layout_marginBottom="20dp"
+                    tools:listitem="@layout/single_product">
 
                 </androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
@@ -310,16 +251,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-<!--        <Button-->
-<!--            android:id="@+id/addToCart_ProductDetailsPage"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:layout_marginBottom="20dp"-->
-<!--            android:background="@drawable/btn_bg"-->
-<!--            android:text="Thêm vào giỏ hàng" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/addToCart_ProductDetailsPage"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:layout_marginRight="10dp"-->
+        <!--            android:layout_marginBottom="20dp"-->
+        <!--            android:background="@drawable/btn_bg"-->
+        <!--            android:text="Thêm vào giỏ hàng" />-->
 
         <LinearLayout
             android:id="@+id/minusLayout"
@@ -332,6 +273,7 @@
             android:elevation="5dp">
 
             <ImageView
+                android:id="@+id/decreseDetail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_baseline_remove_24"
@@ -342,10 +284,10 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/quantityTvCart"
+            android:id="@+id/quantityTvCartDetail"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:text="14"
+            android:text="1"
             android:gravity="center"
             android:textColor="@color/mainText"
             android:textSize="18sp"
@@ -362,13 +304,12 @@
             android:elevation="5dp">
 
             <ImageView
-                android:id="@+id/plusLayout"
+                android:id="@+id/increaseDetail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_baseline_add_24"
                 android:padding="8dp"
-                app:tint="@color/mainText"
-                />
+                android:src="@drawable/ic_baseline_add_24"
+                app:tint="@color/mainText" />
 
         </LinearLayout>
         <LinearLayout
@@ -376,11 +317,23 @@
             android:layout_marginLeft="25dp"
             android:layout_height="match_parent">
             <Button
-                android:id="@+id/addToCart_ProductDetailsPage"
-                android:layout_width="match_parent"
+                android:id="@+id/btnBuyNow"
+                android:layout_width="105dp"
                 android:layout_height="55dp"
-               android:layout_marginTop="10dp"
-                android:text="MUA NGAY" />
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text="BUY NOW" />
+
+            <Button
+                android:id="@+id/btnAddToCart"
+                android:layout_width="105dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="#939C91"
+                android:drawableBottom="@drawable/icon_add_to_cart"
+               />
+
         </LinearLayout>
     </LinearLayout>
 

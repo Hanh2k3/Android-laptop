@@ -5,7 +5,9 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     private  TextView passwordError ;
     private LoadingDialog loadingDialog;
     private LoginViewModel loginViewModel ;
+    private CheckBox cbSaveLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,14 +49,13 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.PassEt);
         btnLogin = findViewById(R.id.loginBtn);
         signUp = findViewById(R.id.signUpTv);
-
         emailError = findViewById(R.id.emailError);
         passwordError = findViewById(R.id.passwordError);
 
+        cbSaveLogin = findViewById(R.id.checkBox);
+
         loginViewModel =new ViewModelProvider(this).get(LoginViewModel.class);
-
         loadingDialog = new LoadingDialog(this);
-
 
         textAutoCheck();
 
@@ -74,16 +77,23 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        loginViewModel.getIsLogin().observeForever(new Observer<Boolean>() {
+        loginViewModel.getToken().observeForever(new Observer<String>() {
             @Override
-            public void onChanged(Boolean aBoolean) {
-                if(!aBoolean) {
+            public void onChanged(String s) {
+                if(s.isEmpty()) {
                     emailError.setVisibility(View.VISIBLE);
                     emailError.setText("Email or password is invalid");
                 } else {
                     Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                    if(cbSaveLogin.isChecked()) {
+                        i.putExtra("email", edtEmail.getText().toString().trim());
+                        i.putExtra("password", edtPassword.getText().toString().trim());
+                        i.putExtra("isSave", true);
+                        i.putExtra("token", s);
+                    }
                     startActivity(i);
                 }
+
             }
         });
     }

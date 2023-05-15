@@ -4,10 +4,16 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.doan.Model.GeneralResponse;
+import com.example.doan.Model.InforShipping;
+import com.example.doan.Model.ShippingDefault;
 import com.example.doan.Model.User;
 import com.example.doan.Model.UserApiResponse;
 import com.example.doan.Network.ApiLogin;
+import com.example.doan.Network.ApiUser;
 import com.example.doan.Network.RetrofitClient;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,10 +24,13 @@ public class UserRepository {
 
     private UserApiResponse userApiResponse;
     private ApiLogin loginService;
+    private static ApiUser userService;
+
     private Integer status ;
     public UserRepository() {
         Retrofit retrofit = RetrofitClient.create();
         loginService = retrofit.create(ApiLogin.class);
+        userService = retrofit.create(ApiUser.class);
     }
     public MutableLiveData<UserApiResponse> loginUser(User user) {
         MutableLiveData<UserApiResponse> userLiveData = new MutableLiveData<>();
@@ -74,5 +83,65 @@ public class UserRepository {
         });
         return userLiveData;
 
+    }
+
+     public MutableLiveData<List<InforShipping>> getAllAdress(String token) {
+        MutableLiveData<List<InforShipping>> list = new MutableLiveData<>();
+        userService.getAllAddress(token).enqueue(new Callback<GeneralResponse<InforShipping>>() {
+            @Override
+            public void onResponse(Call<GeneralResponse<InforShipping>> call, Response<GeneralResponse<InforShipping>> response) {
+                if(response.isSuccessful()) {
+                    GeneralResponse data = response.body();
+                    if(data.getStatus() == 1) {// equal 1 has address 0 is no address
+                        list.setValue(data.getData());
+                    } else list.postValue(null);
+                }
+            }
+            @Override
+            public void onFailure(Call<GeneralResponse<InforShipping>> call, Throwable t) {
+
+            }
+        });
+        return  list ;
+    }
+
+    public MutableLiveData<Boolean> updateAddress (String token, int id) {
+        MutableLiveData<Boolean> check = new MutableLiveData<>() ;
+        userService.updateAddress(token, id).enqueue(new Callback<GeneralResponse<InforShipping>>() {
+            @Override
+            public void onResponse(Call<GeneralResponse<InforShipping>> call, Response<GeneralResponse<InforShipping>> response) {
+                if(response.isSuccessful()) {
+                    GeneralResponse<InforShipping> result = response.body();
+                    if(result.getStatus() == 1) {
+                        check.setValue(true);
+                    } else check.setValue(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GeneralResponse<InforShipping>> call, Throwable t) {
+
+            }
+        });
+        return  check;
+
+    }
+
+    public MutableLiveData<Boolean> insertShippingDefault(String token, ShippingDefault data) {
+        MutableLiveData<Boolean> rs = new MutableLiveData<>();
+        userService.insertShippingDefault(token, data).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    rs.setValue(true);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+        return  rs;
     }
 }

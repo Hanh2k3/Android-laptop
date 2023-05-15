@@ -29,9 +29,8 @@ public class HomeFragment extends Fragment {
 
     private ImageSlider imageSlider ;
     private ArrayList<SlideModel> listSlider ;
-
     private RecyclerView newRecView ;
-    private RecyclerView saleRecView ;
+    private RecyclerView saleRecView;
     private HomeViewModel homeViewModel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +43,6 @@ public class HomeFragment extends Fragment {
         saleRecView = view.findViewById(R.id.saleRecView);
 
         homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
-
         homeViewModel.setListSlider();
         homeViewModel.setListLaptopNew(14);
         homeViewModel.setListLaptopSale(11);

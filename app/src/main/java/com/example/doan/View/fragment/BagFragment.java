@@ -53,7 +53,6 @@ public class BagFragment extends Fragment {
         cartViewModel.getTotal().observeForever(new Observer<Double>() {
             @Override
             public void onChanged(Double aDouble) {
-
                 Locale locale = new Locale("vi", "VN");
                 NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
                 total.setText(nf.format(aDouble));

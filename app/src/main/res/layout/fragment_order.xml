@@ -5,12 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".View.fragment.OrderFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="742dp">
+    <androidx.recyclerview.widget.RecyclerView
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+
+        android:id="@+id/rcOrder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </FrameLayout>
