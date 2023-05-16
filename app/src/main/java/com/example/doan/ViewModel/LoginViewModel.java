@@ -19,6 +19,8 @@ public class LoginViewModel extends ViewModel {
     private final MutableLiveData<Boolean> isLogin = new MutableLiveData<>();
     private final MutableLiveData<UserApiResponse> userLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> token = new MutableLiveData<>();
+
+
     private final UserRepository userRepository;
 
     public LoginViewModel() {

@@ -21,45 +21,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BuyNow">
         <activity
-            android:name=".BuyNowActivity"
+            android:name="com.example.doan.View.activity.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailActivity"
+            android:name="com.example.doan.View.activity.BuyNowActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.doan.View.activity.DetailActivity"
             android:exported="false" />
         <activity
             android:name="com.example.doan.OnboardScreen"
             android:exported="false" />
         <activity
-            android:name=".AddAddressActivity"
+            android:name="com.example.doan.View.activity.AddAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".ShippingActivity"
+            android:name="com.example.doan.View.activity.ShippingActivity"
             android:exported="false" />
         <activity
-            android:name=".OrderActivity"
+            android:name="com.example.doan.View.activity.OrderActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingActivity"
+            android:name="com.example.doan.View.activity.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".CateogryActivity"
+            android:name="com.example.doan.View.activity.CateogryActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name="com.example.doan.View.activity.HomeActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name="com.example.doan.View.activity.SignUpActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.doan.View.activity.LoginActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

@@ -76,21 +76,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <EditText
-                    android:id="@+id/editTextTextPersonName"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/edt_search"
-                    android:ems="10"
-                    android:hint="Search..."
-                    android:layout_marginBottom="20dp"
-                    android:padding="5dp"
-                    android:drawableRight="@drawable/ic_search_home"
-                   android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:inputType="textPersonName" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-<!--                <LinearLayout-->
+                    <EditText
+                        android:id="@+id/edtKeySearch"
+                        android:layout_width="335dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="20dp"
+
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/edt_search"
+
+                        android:ems="10"
+                        android:hint="Search..."
+                        android:inputType="textPersonName"
+                        android:padding="5dp" />
+
+                    <ImageView
+                        android:id="@+id/imgSearch"
+                        android:layout_width="43dp"
+                        android:layout_height="47dp"
+                        app:srcCompat="@drawable/ic_search_home" />
+                </LinearLayout>
+
+                <!--                <LinearLayout-->
 <!--                    android:layout_width="match_parent"-->
 <!--                    android:layout_height="match_parent"-->
 <!--                    android:orientation="horizontal">-->
@@ -238,16 +250,6 @@
 
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/visualSearchBtn_homePage"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/ic_visual_search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

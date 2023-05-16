@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.doan.Model.District;
 import com.example.doan.Model.Province;
+import com.example.doan.Model.MyRequest;
+import com.example.doan.Model.ShipFeeRequest;
 import com.example.doan.Model.ShippingDefault;
 import com.example.doan.Model.Ward;
 import com.example.doan.Repository.FeesRepository;
@@ -19,7 +21,12 @@ public class FeesViewModel extends ViewModel {
     private MutableLiveData<List<District>> listDistrict = new MutableLiveData<>();
     private MutableLiveData<List<Ward>> listWard = new MutableLiveData<>();
 
+
     private MutableLiveData<Boolean> isInsertShippingDefault = new MutableLiveData<>();
+    private MutableLiveData<Integer> service  = new MutableLiveData<>();
+    private MutableLiveData<Double> fee = new MutableLiveData<>();
+
+
     private FeesRepository feesRepository ;
     private UserRepository userRepository;
 
@@ -79,5 +86,31 @@ public class FeesViewModel extends ViewModel {
               provinceList.setValue(provinces);
           }
       });
+    }
+
+    public MutableLiveData<Integer> getService() {
+        return service;
+    }
+
+    public void setService(MyRequest serviceRequest) {
+        feesRepository.getService(serviceRequest).observeForever(new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                service.setValue(integer);
+            }
+        });
+    }
+
+    public MutableLiveData<Double> getFee() {
+        return fee;
+    }
+
+    public void setFee(ShipFeeRequest shipFeeRequest) {
+        feesRepository.getFee(shipFeeRequest).observeForever(new Observer<Double>() {
+            @Override
+            public void onChanged(Double aDouble) {
+                fee.setValue(aDouble);
+            }
+        });
     }
 }

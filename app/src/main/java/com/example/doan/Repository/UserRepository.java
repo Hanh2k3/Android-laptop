@@ -1,5 +1,7 @@
 package com.example.doan.Repository;
 
+import static com.example.doan.Utils.SaveToken.getToken;
+
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -103,6 +105,25 @@ public class UserRepository {
             }
         });
         return  list ;
+    }
+
+    public MutableLiveData<InforShipping> getAddressDefault() {
+        MutableLiveData<InforShipping> data = new MutableLiveData<>();
+        userService.getAddressDefault(getToken()).enqueue(new Callback<GeneralResponse<InforShipping>>() {
+            @Override
+            public void onResponse(Call<GeneralResponse<InforShipping>> call, Response<GeneralResponse<InforShipping>> response) {
+                if(response.isSuccessful()) {
+                    InforShipping inforShipping = response.body().getData().get(0);
+                    data.setValue(inforShipping);
+                }
+            }
+            @Override
+            public void onFailure(Call<GeneralResponse<InforShipping>> call, Throwable t) {
+
+            }
+        });
+
+        return  data;
     }
 
     public MutableLiveData<Boolean> updateAddress (String token, int id) {

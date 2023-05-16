@@ -1,9 +1,12 @@
 package com.example.doan.Repository;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 
 import com.example.doan.Model.DataResponse;
+import com.example.doan.Model.GeneralResponse;
 import com.example.doan.Model.Laptop;
 import com.example.doan.Model.LaptopResponse;
 import com.example.doan.Network.ApiLaptop;
@@ -95,5 +98,29 @@ public class LaptopRepository {
         });
         return data ;
     }
+
+    public MutableLiveData<List<Laptop>> getLaptopSearch(String keySearch) {
+        MutableLiveData<List<Laptop>> data = new MutableLiveData<>() ;
+
+        laptopService.getSearch(keySearch).enqueue(new Callback<GeneralResponse<Laptop>>() {
+            @Override
+            public void onResponse(Call<GeneralResponse<Laptop>> call, Response<GeneralResponse<Laptop>> response) {
+                if(response.isSuccessful()) {
+                    if(response.body().getStatus() == 1) {
+                        data.setValue(response.body().getData());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GeneralResponse<Laptop>> call, Throwable t) {
+
+            }
+        });
+
+        return data ;
+    }
+
+
 
 }

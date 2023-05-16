@@ -1,14 +1,7 @@
 package com.example.doan.View.adapter;
 
-
-
-import static android.app.PendingIntent.getActivity;
-
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.net.Uri;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.doan.Model.CartUpdate;
 import com.example.doan.Model.Image;
 import com.example.doan.Model.ItemOrder;
 import com.example.doan.Model.Laptop;
 import com.example.doan.Model.Order;
 import com.example.doan.R;
+import com.example.doan.View.activity.DetailActivity;
 import com.example.doan.ViewModel.CartViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -32,46 +25,40 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
+public class LaptopBuyAdapter extends RecyclerView.Adapter<LaptopBuyAdapter.ViewHolder> {
 
     private Context context ;
-    private List<Order> listLaptop ;
+    private List<Laptop> listLaptop ;
     private CartViewModel cartViewModel ;
+    private Integer qty ;
 
-    public OrderAdapter(Context context, List<Order> listLaptop ) {
+    public LaptopBuyAdapter(Context context, List<Laptop> listLaptop, Integer qty ) {
         this.context = context;
         this.listLaptop = listLaptop;
+        this.qty = qty ;
     }
+
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_order, parent, false);
-        return new ViewHolder(view);
+        return new LaptopBuyAdapter.ViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Order order = listLaptop.get(position);
-        holder.orderCode.setText("Mã đơn hàng [" + order.getId() + "] ");
 
+        Laptop laptop = listLaptop.get(position);
+        holder.orderCode.setText(laptop.getLaptopName());
 
-        Log.d("index", order.getItems().size() +"");
-        String images = String.valueOf(order.getItems().get(0).getLaptop().getImages().get(0).getPath());
-        Double value = Double.valueOf(order.getTotal());
+        String images = String.valueOf(laptop.getImages().get(0).getPath());
+        Double value = Double.valueOf(laptop.getPrice());
         Locale locale = new Locale("vi", "VN");
         NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
-        holder.orderTotal.setText("Total order : " + nf.format(value));
-
+        holder.orderTotal.setText("Price : " + nf.format(value));
         Picasso.get().load(images).into(holder.orderImage);
-        String qty = "";
-        List<String> newList = new ArrayList<>();
-        for (ItemOrder item: order.getItems() ) {
-            String t =  item.getQty() + "x " + item.getLaptop().getLaptopName();
-            newList.add(t);
-        }
-        qty = newList.toString().replace("[", "").replace("]", "");
-        holder.orderQty.setText("( "+ qty + " )");
-
+        holder.orderQty.setText("x"+ qty);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,10 +67,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             }
         });
 
-
-
     }
-    @Override
+
     public int getItemCount() {
         return listLaptop.size();
     }
@@ -107,4 +92,3 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
 
 }
-

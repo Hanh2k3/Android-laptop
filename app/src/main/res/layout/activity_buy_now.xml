@@ -1,13 +1,9 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="bold"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
-
+  >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,6 +13,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:paddingRight="10dp"
+        android:paddingLeft="5dp"
+        android:background="#F3EFEF"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,13 +111,14 @@
 
                                 <TextView
 
+                                    android:id="@+id/tvNameBuy"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="Lê Văn Hạnh | 0705256624" />
 
                                 <TextView
-                                    android:id="@+id/textView6"
+                                    android:id="@+id/tvAddressBuy"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -143,9 +143,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
                     <androidx.recyclerview.widget.RecyclerView
+
+                        android:id="@+id/rcLaptopsOrderPage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -242,14 +246,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:text="Total product cost" />
 
                         <TextView
+                            android:id="@+id/tvTotalProducts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="TextView" />
+                            android:paddingRight="10dp"
+                            android:text="đ 123.000.00" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -262,17 +268,19 @@
                         <TextView
                             android:id="@+id/textView10"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:text="Shipping fee" />
 
                         <TextView
 
+                            android:id="@+id/tvShippingFee"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="TextView" />
+                            android:paddingRight="10dp"
+                            android:text="đ 20.000.00" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -291,13 +299,15 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvTotalPayment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="TextView"
+                            android:text="đ 29.00.00.000"
                             android:textColor="#E40E0E"
                             android:textSize="18dp"
+                            android:paddingRight="10dp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -335,11 +345,11 @@
                 android:gravity="right"
                 android:text="Total order"
                 android:textColor="#0E0D0D"
-                android:textStyle="bold"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/tvLastTotalPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"

@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 
+import com.example.doan.Model.BuyResponse;
 import com.example.doan.Model.CartUpdate;
 import com.example.doan.Model.DataResponse;
 import com.example.doan.Model.GeneralResponse;
@@ -49,11 +50,29 @@ public class OrderRepository {
 
             }
         });
-
-
-
         return  listOrder;
     }
+
+    public  MutableLiveData<Boolean> insertOrder(String token, BuyResponse buyResponse) {
+        MutableLiveData<Boolean> result = new MutableLiveData<>();
+        orderService.insertOrder(token, buyResponse).enqueue(new Callback<GeneralResponse<Order>>() {
+            @Override
+            public void onResponse(Call<GeneralResponse<Order>> call, Response<GeneralResponse<Order>> response) {
+                if(response.isSuccessful()) {
+                    if(response.body().getStatus()==1) result.setValue(true);
+                    else result.setValue(false);
+                } else result.setValue(false);
+            }
+
+            @Override
+            public void onFailure(Call<GeneralResponse<Order>> call, Throwable t) {
+
+            }
+        });
+        return result ;
+    }
+
+
 
 
 

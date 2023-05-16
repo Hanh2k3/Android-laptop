@@ -22,11 +22,16 @@ public interface ApiUser {
     @GET("api/v1/user/address")
     Call<GeneralResponse<InforShipping>> getAllAddress(@Header("Authorization") String token);
 
+    @GET("api/v1/user/address/default")
+    Call<GeneralResponse<InforShipping>> getAddressDefault(@Header("Authorization") String token);
+
     // update shipping
     @PUT("api/v1/user/address/{id}")
     Call<GeneralResponse<InforShipping>> updateAddress(@Header("Authorization") String token , @Path("id") int  id);
 
     @POST("api/v1/user/address")
     Call<Void> insertShippingDefault (@Header("Authorization") String token, @Body ShippingDefault data);
+
+
 
 }

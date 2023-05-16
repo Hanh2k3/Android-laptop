@@ -28,6 +28,9 @@ public class ProfileViewModel extends ViewModel {
     private static UserRepository userRepository ;
     private MutableLiveData<UserProfile> userProfile = new MutableLiveData<>();
     private static MutableLiveData<List<InforShipping>> listInforShipping = new MutableLiveData<>();
+    private MutableLiveData<InforShipping> addressDefault  = new MutableLiveData<>();
+
+
     public ProfileViewModel() {
         this.profileRepository = new ProfileRepository();
         this.userRepository = new UserRepository();
@@ -76,6 +79,20 @@ public class ProfileViewModel extends ViewModel {
 
 
 
+    }
+
+    public void setAddressDefault() {
+        // set for address default
+        userRepository.getAddressDefault().observeForever(new Observer<InforShipping>() {
+            @Override
+            public void onChanged(InforShipping inforShipping) {
+                addressDefault.setValue(inforShipping);
+            }
+        });
+    }
+
+    public MutableLiveData<InforShipping> getAddressDefault() {
+        return this.addressDefault;
     }
 
 

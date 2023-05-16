@@ -1,5 +1,6 @@
 package com.example.doan.View.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,12 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.doan.Model.Laptop;
 import com.example.doan.R;
+import com.example.doan.View.activity.SearchActivity;
 import com.example.doan.View.adapter.LaptopAdapter;
 import com.example.doan.ViewModel.HomeViewModel;
 
@@ -32,6 +37,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView newRecView ;
     private RecyclerView saleRecView;
     private HomeViewModel homeViewModel;
+    private ImageView imgSearch ;
+    private EditText edtKeySearch;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,7 +48,8 @@ public class HomeFragment extends Fragment {
         imageSlider = view.findViewById(R.id.imgslider);
         newRecView = view.findViewById(R.id.newRecView);
         saleRecView = view.findViewById(R.id.saleRecView);
-
+        imgSearch = view.findViewById(R.id.imgSearch);
+        edtKeySearch = view.findViewById(R.id.edtKeySearch);
         homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
         homeViewModel.setListSlider();
         homeViewModel.setListLaptopNew(14);
@@ -70,6 +78,25 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                search();
+            }
+        });
+
         return view ;
+    }
+
+    private void search() {
+        String keySearch = edtKeySearch.getText().toString().trim();
+        if( !keySearch.isEmpty()) {
+             Intent i = new Intent(getContext(), SearchActivity.class);
+             i.putExtra("keySearch", keySearch);
+             startActivity(i);
+        } else {
+            Toast.makeText(getContext(), "Please enter key search", Toast.LENGTH_LONG).show();
+        }
     }
 }

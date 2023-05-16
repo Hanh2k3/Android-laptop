@@ -22,8 +22,13 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<List<SlideModel>> listSlider = new MutableLiveData<List<SlideModel>>();
     private MutableLiveData<List<Laptop>> listLaptopNew = new MutableLiveData<List<Laptop>>();
     private MutableLiveData<List<Laptop>> listLaptopSale = new MutableLiveData<List<Laptop>>();
+    private  MutableLiveData<List<Laptop>> listLaptopSearch = new MutableLiveData<>();
+
+
+
     private SliderRepository sliderRepository ;
     private LaptopRepository laptopRepository ;
+
 
     public HomeViewModel() {
         this.sliderRepository = new SliderRepository();
@@ -71,5 +76,18 @@ public class HomeViewModel extends ViewModel {
 
     public MutableLiveData<List<Laptop>> getListLaptopSale() {
         return this.listLaptopSale;
+    }
+    public MutableLiveData<List<Laptop>> getListLaptopSearch() {
+        return listLaptopSearch;
+    }
+
+    public void setListLaptopSearch(String keySearch) {
+        laptopRepository.getLaptopSearch(keySearch).observeForever(new Observer<List<Laptop>>() {
+            @Override
+            public void onChanged(List<Laptop> laptops) {
+                Log.d("laptops", laptops.toString());
+                listLaptopSearch.setValue(laptops);
+            }
+        });
     }
 }

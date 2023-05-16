@@ -2,12 +2,15 @@ package com.example.doan.ViewModel;
 
 
 
+import static com.example.doan.Utils.SaveToken.getToken;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.doan.Model.BuyResponse;
 import com.example.doan.Model.Category;
 import com.example.doan.Model.DataResponse;
 import com.example.doan.Model.Laptop;
@@ -25,6 +28,10 @@ import java.util.Vector;
 public class OrderViewModel extends ViewModel {
 
     private MutableLiveData<List<Order>> listOrder = new MutableLiveData<List<Order>>();
+    private MutableLiveData<Boolean> isOrder = new MutableLiveData<>();
+
+
+
 
     private OrderRepository orderRepository ;
     private CategoryRepository  categoryRepository ;
@@ -42,6 +49,19 @@ public class OrderViewModel extends ViewModel {
             @Override
             public void onChanged(List<Order> orders) {
                 listOrder.setValue(orders);
+            }
+        });
+    }
+
+    public MutableLiveData<Boolean> getIsOrder() {
+        return isOrder;
+    }
+
+    public void setIsOrder(BuyResponse buyResponse) {
+        orderRepository.insertOrder(getToken(), buyResponse).observeForever(new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                isOrder.setValue(aBoolean);
             }
         });
     }

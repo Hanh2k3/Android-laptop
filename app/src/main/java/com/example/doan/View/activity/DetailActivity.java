@@ -35,6 +35,7 @@ import com.example.doan.View.adapter.LaptopAdapter;
 import com.example.doan.View.adapter.ViewPagerAdapter;
 import com.example.doan.View.adapter.ViewPagerDetailAdapter;
 import com.example.doan.ViewModel.DetailViewModel;
+import com.example.doan.ViewModel.FeesViewModel;
 import com.example.doan.ViewModel.HomeViewModel;
 import com.google.android.material.tabs.TabLayout;
 
@@ -48,6 +49,7 @@ import android.content.Context;
 public class DetailActivity extends AppCompatActivity {
 
     private DetailViewModel detailViewModel ;
+
     private RecyclerView rcListImage;
     private RecyclerView rcRecomendLaptop;
     private TextView tvLaptopName;
@@ -164,10 +166,11 @@ public class DetailActivity extends AppCompatActivity {
 
     }
     private void buyNow() {
-
-
+        Intent intent = new Intent(DetailActivity.this, BuyNowActivity.class);
+        intent.putExtra("isBuyNow", true);
+        intent.putExtra("laptopId", laptopId);
+        startActivity(intent);
     }
-
     private void addToCart() {
         String value = qtyCart.getText().toString().trim();
         Integer qty = Integer.parseInt(value);
