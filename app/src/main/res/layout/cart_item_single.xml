@@ -121,16 +121,21 @@
 
                 <ImageView
                     android:id="@+id/cartDel"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:layout_weight="1"
                     android:src="@drawable/ic_baseline_clear_24"
                     app:tint="@color/mainText" />
 
                 <ImageView
                     android:id="@+id/cartUpdate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:src="@drawable/icon_done"

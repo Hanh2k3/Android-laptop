@@ -87,7 +87,7 @@ public class ProfileFragment extends Fragment {
                 tvUserEmail.setText(userProfile.getEmail());
                 Integer count_orderV = userProfile.getCountOrder();
                 if(count_orderV == 0) countOrder.setText("You have no order");
-                else countOrder.setText(userProfile.getCountOrder().toString());
+                else countOrder.setText(userProfile.getCountOrder().toString() + "order");
                 if (userProfile.getShipping() == null )  shippingDefault.setText("No address");
                 else shippingDefault.setText(userProfile.getShipping());
             }

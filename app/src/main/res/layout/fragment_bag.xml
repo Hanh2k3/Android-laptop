@@ -4,31 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    >
+    android:background="#ECE7E7">
 
 
-<!--    <LinearLayout-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:id="@+id/linearLayout2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:gravity="right"-->
-<!--        android:layout_marginRight="10dp"-->
-<!--        android:layout_marginLeft="10dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        tools:ignore="RtlHardcoded">-->
+    <!--    <LinearLayout-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:id="@+id/linearLayout2"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:gravity="right"-->
+    <!--        android:layout_marginRight="10dp"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:ignore="RtlHardcoded">-->
 
-<!--        <ImageView-->
-<!--            android:layout_gravity="center"-->
-<!--            android:id="@+id/searchIv_ProfileFrag"-->
-<!--            android:layout_width="22dp"-->
-<!--            android:layout_height="22dp"-->
-<!--            android:src="@drawable/ic_search" />-->
+    <!--        <ImageView-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:id="@+id/searchIv_ProfileFrag"-->
+    <!--            android:layout_width="22dp"-->
+    <!--            android:layout_height="22dp"-->
+    <!--            android:src="@drawable/ic_search" />-->
 
-<!--    </LinearLayout>-->
+    <!--    </LinearLayout>-->
 
     <TextView
         android:id="@+id/MybagText"
@@ -54,11 +53,11 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="10dp"
-        tools:listitem="@layout/cart_item_single"
         app:layout_constraintBottom_toTopOf="@+id/bottomCartLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MybagText">
+        app:layout_constraintTop_toBottomOf="@+id/MybagText"
+        tools:listitem="@layout/cart_item_single">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -66,8 +65,8 @@
         android:id="@+id/bottomCartLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@color/background"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -116,37 +115,37 @@
 
     </LinearLayout>
 
-        <LinearLayout
-            android:visibility="gone"
-            android:gravity="center"
-            android:id="@+id/emptyBagMsgLayout"
-            android:orientation="vertical"
-            android:layout_width="250dp"
-            android:layout_height="300dp"
+    <LinearLayout
+        android:id="@+id/emptyBagMsgLayout"
+        android:layout_width="250dp"
+        android:layout_height="300dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationViewCartPage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <com.airbnb.lottie.LottieAnimationView
-                android:scaleType="centerCrop"
-                android:id="@+id/animationViewCartPage"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:lottie_rawRes="@raw/empty_bag" />
-            <TextView
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Empty Bag"
-                android:textColor="@color/textAd"
-                android:fontFamily="@font/metropolis_semibold"
-                android:textSize="25dp"
-                >
-            </TextView>
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/empty_bag" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/metropolis_semibold"
+            android:gravity="center"
+            android:text="Empty Bag"
+            android:textColor="@color/textAd"
+            android:textSize="25dp"></TextView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

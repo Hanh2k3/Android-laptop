@@ -60,13 +60,14 @@
             android:id="@+id/tabLayoutOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabSelectedTextColor="#0B3FDC"
+            app:tabSelectedTextColor="#ED3F3F"
             tools:layout_editor_absoluteX="1dp" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerOrder"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="#F1EEEE" />
 
 
     </LinearLayout>
