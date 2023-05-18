@@ -1,5 +1,7 @@
 package com.example.doan.ViewModel;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -29,6 +31,9 @@ public class ProfileViewModel extends ViewModel {
     private MutableLiveData<UserProfile> userProfile = new MutableLiveData<>();
     private static MutableLiveData<List<InforShipping>> listInforShipping = new MutableLiveData<>();
     private MutableLiveData<InforShipping> addressDefault  = new MutableLiveData<>();
+
+    private static MutableLiveData<Boolean> isHasAddressDefault = new MutableLiveData<>();
+
 
 
     public ProfileViewModel() {
@@ -61,13 +66,16 @@ public class ProfileViewModel extends ViewModel {
                 if(inforShippings != null) {
                     listInforShipping.setValue(inforShippings);
 
-                } else listInforShipping.setValue(null);
+                } else {
+                    listInforShipping.setValue(null);
+                    isHasAddressDefault.setValue(true);
+
+                }
             }
         });
     }
 
      static  public void updateAddress(String token, int id) {
-
         userRepository.updateAddress(token, id).observeForever(new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -86,13 +94,22 @@ public class ProfileViewModel extends ViewModel {
         userRepository.getAddressDefault().observeForever(new Observer<InforShipping>() {
             @Override
             public void onChanged(InforShipping inforShipping) {
-                addressDefault.setValue(inforShipping);
+                if(inforShipping !=null ) {
+                    addressDefault.setValue(inforShipping);
+                    isHasAddressDefault.setValue(true);
+                } else {
+                    isHasAddressDefault.setValue(false);
+                }
             }
         });
     }
 
     public MutableLiveData<InforShipping> getAddressDefault() {
         return this.addressDefault;
+    }
+
+    public  MutableLiveData<Boolean> getIsHasAddressDefault() {
+        return this.isHasAddressDefault;
     }
 
 

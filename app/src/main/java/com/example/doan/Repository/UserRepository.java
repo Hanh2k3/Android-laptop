@@ -113,8 +113,14 @@ public class UserRepository {
             @Override
             public void onResponse(Call<GeneralResponse<InforShipping>> call, Response<GeneralResponse<InforShipping>> response) {
                 if(response.isSuccessful()) {
-                    InforShipping inforShipping = response.body().getData().get(0);
-                    data.setValue(inforShipping);
+                    if(response.body().getStatus() == 1) {
+                        InforShipping inforShipping = response.body().getData().get(0);
+                        data.setValue(inforShipping);
+                    } else {
+                        data.setValue(null);
+
+                    }
+
                 }
             }
             @Override

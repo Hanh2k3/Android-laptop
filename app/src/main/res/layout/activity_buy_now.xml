@@ -85,6 +85,7 @@
 
 
                         <LinearLayout
+                            android:id="@+id/selectAddress"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
@@ -151,6 +152,7 @@
 
                         android:id="@+id/rcLaptopsOrderPage"
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
@@ -184,7 +186,7 @@
                                 app:srcCompat="@drawable/icon_method_payment" />
 
                             <TextView
-                                android:id="@+id/textView8"
+                                android:id="@+id/tvmethodPayment"
                                 android:layout_width="277dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"

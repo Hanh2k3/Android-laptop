@@ -2,6 +2,7 @@ package com.example.doan.View.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,16 +30,12 @@ public class LaptopBuyAdapter extends RecyclerView.Adapter<LaptopBuyAdapter.View
 
     private Context context ;
     private List<Laptop> listLaptop ;
-    private CartViewModel cartViewModel ;
-    private Integer qty ;
 
-    public LaptopBuyAdapter(Context context, List<Laptop> listLaptop, Integer qty ) {
+    public LaptopBuyAdapter(Context context, List<Laptop> listLaptop ) {
         this.context = context;
         this.listLaptop = listLaptop;
-        this.qty = qty ;
+        Log.d("size", this.listLaptop.size() + "");
     }
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -48,17 +45,15 @@ public class LaptopBuyAdapter extends RecyclerView.Adapter<LaptopBuyAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Laptop laptop = listLaptop.get(position);
         holder.orderCode.setText(laptop.getLaptopName());
-
         String images = String.valueOf(laptop.getImages().get(0).getPath());
-        Double value = Double.valueOf(laptop.getPrice());
+        Double value = Double.valueOf(laptop.getPrice()* laptop.getQty());
         Locale locale = new Locale("vi", "VN");
         NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
         holder.orderTotal.setText("Price : " + nf.format(value));
         Picasso.get().load(images).into(holder.orderImage);
-        holder.orderQty.setText("x"+ qty);
+        holder.orderQty.setText("x"+ laptop.getQty());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,10 +80,6 @@ public class LaptopBuyAdapter extends RecyclerView.Adapter<LaptopBuyAdapter.View
             orderCode = itemView.findViewById(R.id.tvCodeOrder);
             orderQty = itemView.findViewById(R.id.tvQty);
             orderTotal = itemView.findViewById(R.id.tvTotal);
-
         }
     }
-
-
-
 }

@@ -3,6 +3,7 @@ package com.example.doan.View.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ public class LaptopAdapter extends RecyclerView.Adapter<LaptopAdapter.LaptopHold
     public void onBindViewHolder(@NonNull LaptopHolder holder, int position) {
         Laptop laptop = listLaptops.get(position);
         List<Image> images = laptop.getImages();
+        Log.d("image", images.size() + "");
         String path = images.get(0).getPath();
         Picasso.get().load(path).into(holder.laptopImage);
         Double value = Double.valueOf(laptop.getPrice()*laptop.getQty());

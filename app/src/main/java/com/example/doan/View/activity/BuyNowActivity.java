@@ -8,11 +8,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +27,9 @@ import com.example.doan.Model.ShipFeeRequest;
 import com.example.doan.Model.ShippingBuy;
 import com.example.doan.Model.UserProfile;
 import com.example.doan.R;
+import com.example.doan.Utils.NotificationCustom;
 import com.example.doan.View.adapter.LaptopBuyAdapter;
+import com.example.doan.ViewModel.CartViewModel;
 import com.example.doan.ViewModel.DetailViewModel;
 import com.example.doan.ViewModel.FeesViewModel;
 import com.example.doan.ViewModel.OrderViewModel;
@@ -37,16 +41,14 @@ import java.util.List;
 import java.util.Locale;
 
 public class BuyNowActivity extends AppCompatActivity {
-
-
     private  DetailViewModel detailViewModel ;
     private FeesViewModel feesViewModel ;
     private ProfileViewModel profileViewModel ;
     private OrderViewModel orderViewModel ;
+    private CartViewModel cartViewModel ;
     private List<Laptop> listLaptops = new ArrayList<>();
     private RecyclerView rcListItem ;
     private Integer qty ;
-
     private Double totalProduct ;
     private Double feeShip ;
     private String name ;
@@ -70,7 +72,12 @@ public class BuyNowActivity extends AppCompatActivity {
     private String address ;
     private String phone ;
     private List<LaptopBuy> listLaptopBuy ;
-
+    private ProgressDialog progressDialog;
+    private TextView tvMethodPayment;
+    private  Boolean isHasAddress ;
+    private LinearLayout selectAddress ;
+    private Boolean  isBuyNow ;
+    private Integer laptopId ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +92,9 @@ public class BuyNowActivity extends AppCompatActivity {
         tvTotalPayment = findViewById(R.id.tvTotalPayment);
         tvLastTotalPayment = findViewById(R.id.tvLastTotalPayment);
         btnBuyNow = findViewById(R.id.btnBuyNow);
+        progressDialog = new ProgressDialog(BuyNowActivity.this);
+        tvMethodPayment = findViewById(R.id.tvmethodPayment);
+        selectAddress = findViewById(R.id.selectAddress);
         methodPayment = 1;
 
         Intent intent = getIntent();
@@ -93,63 +103,88 @@ public class BuyNowActivity extends AppCompatActivity {
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
 
-        boolean isBuyNow = intent.getBooleanExtra("isBuyNow", false );
+        isBuyNow = intent.getBooleanExtra("isBuyNow", false );
         listLaptopBuy = new ArrayList<>();
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+        totalProduct = 0.0 ;
+        qty = 0 ;
+        rcListItem.setLayoutManager(new LinearLayoutManager(BuyNowActivity.this, LinearLayoutManager.VERTICAL, false));
+        rcListItem.setHasFixedSize(true);
+        isHasAddress = true ;
         if(isBuyNow) { // when come from detail page
-            Integer laptopId = intent.getIntExtra("laptopId", 0 );
+            laptopId = intent.getIntExtra("laptopId", 0 );
             qty  = intent.getIntExtra("qty", 1);
-            height = 15 ;
-            length = 15 ;
-            weight = 1000;
-            width= 15 ;
-
+            feeShip = 20000.0*qty ;
             detailViewModel.setLaptop(laptopId);
             detailViewModel.getLaptop().observeForever(new Observer<Laptop>() {
                 @Override
                 public void onChanged(Laptop laptop) {
+                    laptop.setQty(qty);
                     listLaptops.add(laptop);
                     totalProduct = qty * laptop.getPrice() + 0.0;
-
-                    rcListItem.setLayoutManager(new LinearLayoutManager(BuyNowActivity.this, LinearLayoutManager.HORIZONTAL, false));
-                    rcListItem.setHasFixedSize(true);
-                    rcListItem.setAdapter(new LaptopBuyAdapter(BuyNowActivity.this, listLaptops, qty));
-                    Locale locale = new Locale("vi", "VN");
-                    NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
                     tvTotalProduct.setText(nf.format(Double.valueOf(totalProduct)));
-
                     // set for list laptop
-                    LaptopBuy laptopBuy = new LaptopBuy(laptop.getId(), laptop.getPrice(), qty);
+                    LaptopBuy laptopBuy = new LaptopBuy(laptop.getId(), laptop.getPrice()*qty, qty);
                     listLaptopBuy.add(laptopBuy);
+                    rcListItem.setAdapter(new LaptopBuyAdapter(BuyNowActivity.this, listLaptops));
                 }
             });
         } else {
+            cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+            cartViewModel.setCart();
+            cartViewModel.getCart().observeForever(new Observer<List<Laptop>>() {
+                @Override
+                public void onChanged(List<Laptop> laptops) {
+                    listLaptops = laptops ;
+                   for (int i=0 ; i< laptops.size(); i++) {
+                        LaptopBuy laptopBuy = new LaptopBuy(laptops.get(i).getId(),  laptops.get(i).getPrice(), laptops.get(i).getQty());
+                        listLaptopBuy.add(laptopBuy);
+                        qty += laptops.get(i).getQty();
+                        totalProduct += laptops.get(i).getPrice()*laptops.get(i).getQty() + 0.0 ;
+                   }
+                   feeShip = 20000.0 * qty ;
 
-        }
+
+                }
+            });
+        };
         // set up for delivery
+        rcListItem.setAdapter(new LaptopBuyAdapter(BuyNowActivity.this, listLaptops));
 
         profileViewModel.setAddressDefault();
         profileViewModel.getAddressDefault().observeForever(new Observer<InforShipping>() {
             @Override
             public void onChanged(InforShipping inforShipping) {
-                name = inforShipping.getPhone();
-                feeShip = 20000.0*qty ;
-                districtId = inforShipping.getDistrictId();
-                 wardId = inforShipping.getWardId();
-                tvAddress.setText(inforShipping.getAddress());
-                serviceRequest = new MyRequest(1529, districtId);
-                profileViewModel.getProfile(getToken());
-                Locale locale = new Locale("vi", "VN");
-                NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
-                Double total = feeShip + totalProduct ;
-
-                tvTotalPayment.setText(nf.format(Double.valueOf(feeShip + totalProduct)));
-                tvLastTotalPayment.setText(nf.format(Double.valueOf(feeShip + totalProduct)));
-                tvShippingFee.setText(nf.format(Double.valueOf(feeShip)));
-
-                address = inforShipping.getAddress();
-                phone = inforShipping.getPhone();
-                feesViewModel.setService(serviceRequest);
-
+                    name = inforShipping.getPhone();
+                    districtId = inforShipping.getDistrictId();
+                    wardId = inforShipping.getWardId();
+                    tvAddress.setText(inforShipping.getAddress());
+                    serviceRequest = new MyRequest(1529, districtId);
+                    profileViewModel.getProfile(getToken());
+                    Locale locale = new Locale("vi", "VN");
+                    NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+                    tvTotalPayment.setText(nf.format(Double.valueOf(feeShip + totalProduct)));
+                    tvLastTotalPayment.setText(nf.format(Double.valueOf(feeShip + totalProduct)));
+                    tvShippingFee.setText(nf.format(Double.valueOf(feeShip)));
+                    address = inforShipping.getAddress();
+                    phone = inforShipping.getPhone();
+                    feesViewModel.setService(serviceRequest);
+            }
+        });
+        profileViewModel.getIsHasAddressDefault().observeForever(new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(!aBoolean) {
+                    isHasAddress = false ;
+                    tvTotalPayment.setText("Add address delivery");
+                    tvLastTotalPayment.setText("Add address delivery");
+                    tvShippingFee.setText("Add address delivery");
+                    tvName.setText("Add address delivery");
+                    tvAddress.setVisibility(View.INVISIBLE);
+                } else  {
+                    isHasAddress = true ;
+                }
             }
         });
         profileViewModel.getUserProfile().observeForever(new Observer<UserProfile>() {
@@ -170,31 +205,38 @@ public class BuyNowActivity extends AppCompatActivity {
                 feesViewModel.setFee(shipFeeRequest);
             }
         });
-        feesViewModel.getFee().observeForever(new Observer<Double>() {
-            @Override
-            public void onChanged(Double aDouble) {
-               feeShip=aDouble;
-                Locale locale = new Locale("vi", "VN");
-                NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
-                tvTotalPayment.setText(nf.format(Double.valueOf(feeShip)));
-                tvLastTotalPayment.setText(nf.format(Double.valueOf(feeShip)));
-                tvShippingFee.setText(nf.format(Double.valueOf(feeShip)));
-
-            }
-        });
-
-
+        if(methodPayment == 1) {
+            tvMethodPayment.setText("Method payment: " + "COD");
+        }
         btnBuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buyNow();
+                if(!isHasAddress) {
+                    Toast.makeText(BuyNowActivity.this, "Please add address delivery", Toast.LENGTH_LONG).show();
+                } else  buyNow();
             }
         });
 
+        selectAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isHasAddress) {
 
+                } else {
+                    Intent i = new Intent(BuyNowActivity.this, AddAddressActivity.class);
+                    i.putExtra("isBuy", true);
+                    if(isBuyNow) {
+                        i.putExtra("isBuyNow", true);
+                        i.putExtra("laptopId", laptopId);
+                        i.putExtra("qty", qty);
+                    }
+                    startActivity(i);
+                }
+
+            }
+        });
 
     }
-
     private void buyNow() {
 
         ShippingBuy shippingBuy = new ShippingBuy(address, phone, "Notes ", feeShip);
@@ -205,15 +247,17 @@ public class BuyNowActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    Toast.makeText(BuyNowActivity.this, "Order ok", Toast.LENGTH_LONG).show();
+                    progressDialog.setMessage("Order success ...");
+                    progressDialog.show();
+                    new NotificationCustom(BuyNowActivity.this);
                     Intent intent = new Intent(BuyNowActivity.this, OrderActivity.class);
+                    intent.putExtra("isBuy", true);
                     startActivity(intent);
-
+                    finish();
                 } else {
                     Toast.makeText(BuyNowActivity.this, "Order false", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
     }
 }

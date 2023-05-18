@@ -14,6 +14,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.doan.Model.InforShipping;
 import com.example.doan.R;
@@ -32,6 +34,8 @@ public class ShippingActivity extends AppCompatActivity {
 
     private FloatingActionButton btnNew ;
 
+    private ImageView back ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +43,19 @@ public class ShippingActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.rcAddress);
         btnNew = findViewById(R.id.addAddress_ShippingPage);
+        back = findViewById(R.id.back_shipping);
 
         profileViewModel =  new ViewModelProvider(this).get(ProfileViewModel.class);
         profileViewModel.setValueAddress(getToken());
         profileViewModel.getListInforShipping().observeForever(new Observer<List<InforShipping>>() {
             @Override
             public void onChanged(List<InforShipping> inforShippings) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(ShippingActivity.this, LinearLayoutManager.VERTICAL, false));
-                recyclerView.setAdapter(new AddressAdapter(ShippingActivity.this, inforShippings));
+
+                if(inforShippings != null) {
+                    recyclerView.setLayoutManager(new LinearLayoutManager(ShippingActivity.this, LinearLayoutManager.VERTICAL, false));
+                    recyclerView.setAdapter(new AddressAdapter(ShippingActivity.this, inforShippings));
+                }
+
             }
         });
 
@@ -55,6 +64,14 @@ public class ShippingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ShippingActivity.this, AddAddressActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ShippingActivity.this, HomeActivity.class);
+                startActivity(i);
             }
         });
 

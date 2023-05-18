@@ -60,6 +60,7 @@ public class AddAddressActivity extends AppCompatActivity {
     private  Integer provincePosition;
     private  Integer districtPosition;
     private  Integer wardPosition;
+    private  Boolean isBuy  ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,13 +74,11 @@ public class AddAddressActivity extends AppCompatActivity {
 
         edPhone = findViewById(R.id.edtPhoneAdd);
         edVillage = findViewById(R.id.edtAddressAddd);
-
-
         feesViewModel = new ViewModelProvider(this).get(FeesViewModel.class);
-
-
         feesViewModel.setProvinceList();
 
+        Intent i = getIntent() ;
+        isBuy = i.getBooleanExtra("isBuy", false);
         feesViewModel.getProvinceList().observeForever(new Observer<List<Province>>() {
             @Override
             public void onChanged(List<Province> provinces) {
@@ -204,8 +203,19 @@ public class AddAddressActivity extends AppCompatActivity {
         feesViewModel.getIsInsertShippingDefault().observeForever(new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean) {
+                if(aBoolean && !isBuy) {
                     Intent i = new Intent(AddAddressActivity.this, ShippingActivity.class);
+                    startActivity(i);
+                } else {
+                    Intent i = new Intent(AddAddressActivity.this, BuyNowActivity.class);
+                    Boolean isBuyNow = i.getBooleanExtra("isBuyNow", false);
+                    if(isBuyNow) {
+                        Integer qty = i.getIntExtra("qty", 0);
+                        Integer laptopId = i.getIntExtra("laptopId", 0 );
+                        i.putExtra("isBuyNow", true);
+                        i.putExtra("qty", qty);
+                        i.putExtra("laptopId", laptopId);
+                    }
                     startActivity(i);
                 }
             }
@@ -231,7 +241,6 @@ public class AddAddressActivity extends AppCompatActivity {
                         + " " + listProvinces.get(districtPosition);
             ShippingDefault data = new ShippingDefault(address, phone,Integer.parseInt(listWardId.get(wardPosition)), listDistrictId.get(districtPosition));
             feesViewModel.setIsInsertShippingDefault(getToken(), data);
-
         }
     }
 

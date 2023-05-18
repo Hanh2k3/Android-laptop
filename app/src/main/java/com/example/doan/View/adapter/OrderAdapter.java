@@ -52,10 +52,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Order order = listLaptop.get(position);
-        holder.orderCode.setText("Mã đơn hàng [" + order.getId() + "] ");
-
-
-        Log.d("index", order.getItems().size() +"");
+        holder.orderCode.setText("CODE [" + order.getId() + "] ");
         String images = String.valueOf(order.getItems().get(0).getLaptop().getImages().get(0).getPath());
         Double value = Double.valueOf(order.getTotal());
         Locale locale = new Locale("vi", "VN");
@@ -79,8 +76,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
             }
         });
-
-
 
     }
     @Override

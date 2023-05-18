@@ -56,15 +56,10 @@ public class ProfileFragment extends Fragment {
     private SharedPreferences sharedPreferences ;
     private Boolean isSave ;
 
-
-
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-
         tvUserName = view.findViewById(R.id.profileName_profileFrag);
         tvUserEmail = view.findViewById(R.id.profileEmail_profileFrag);
         countOrder = view.findViewById(R.id.count_order);
@@ -77,19 +72,22 @@ public class ProfileFragment extends Fragment {
         avatar = view.findViewById(R.id.profileImage_profileFrag);
         avatar.setImageResource(R.drawable.ic_profile);
 
-
         profileViewModel = new ViewModelProvider(getActivity()).get(ProfileViewModel.class);
         profileViewModel.getProfile(getToken());
         profileViewModel.getUserProfile().observeForever(new Observer<UserProfile>() {
             @Override
             public void onChanged(UserProfile userProfile) {
-                tvUserName.setText(userProfile.getName());
-                tvUserEmail.setText(userProfile.getEmail());
-                Integer count_orderV = userProfile.getCountOrder();
-                if(count_orderV == 0) countOrder.setText("You have no order");
-                else countOrder.setText(userProfile.getCountOrder().toString() + "order");
-                if (userProfile.getShipping() == null )  shippingDefault.setText("No address");
-                else shippingDefault.setText(userProfile.getShipping());
+
+                if(userProfile != null ) {
+                    tvUserName.setText(userProfile.getName());
+                    tvUserEmail.setText(userProfile.getEmail());
+                    Integer count_orderV = userProfile.getCountOrder();
+                    if(count_orderV == 0) countOrder.setText("You have no order");
+                    else countOrder.setText(userProfile.getCountOrder().toString() + " order");
+                    if (userProfile.getShipping() == null )  shippingDefault.setText("No address");
+                    else shippingDefault.setText(userProfile.getShipping());
+                }
+
             }
         });
 

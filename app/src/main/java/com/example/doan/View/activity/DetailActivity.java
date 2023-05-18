@@ -49,7 +49,6 @@ import android.content.Context;
 public class DetailActivity extends AppCompatActivity {
 
     private DetailViewModel detailViewModel ;
-
     private RecyclerView rcListImage;
     private RecyclerView rcRecomendLaptop;
     private TextView tvLaptopName;
@@ -64,6 +63,7 @@ public class DetailActivity extends AppCompatActivity {
     private Button btnAddCart ; 
     private Button btnBuyNow ;
     private Integer laptopId ;
+    private  Integer qty ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,18 +82,19 @@ public class DetailActivity extends AppCompatActivity {
         btnAddCart = findViewById(R.id.btnAddToCart); 
         btnBuyNow = findViewById(R.id.btnBuyNow);
         qtyCart = findViewById(R.id.quantityTvCartDetail);
+
+        qty = 1;
         
         // qty
         increase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String value = qtyCart.getText().toString();
-                Integer qty = Integer.parseInt(value);
+                qty = Integer.parseInt(value);
                 qty +=1 ;
                 qtyCart.setText(qty + "");
             }
         });
-
         decrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,19 +157,19 @@ public class DetailActivity extends AppCompatActivity {
                 addToCart(); 
             }
         });
-        
         btnBuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 buyNow(); 
             }
         });
-
     }
     private void buyNow() {
         Intent intent = new Intent(DetailActivity.this, BuyNowActivity.class);
         intent.putExtra("isBuyNow", true);
         intent.putExtra("laptopId", laptopId);
+        intent.putExtra("qty", qty );
+
         startActivity(intent);
     }
     private void addToCart() {

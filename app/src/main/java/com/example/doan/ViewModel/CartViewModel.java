@@ -33,11 +33,6 @@ public class CartViewModel extends ViewModel {
     }
 
     public static void setCart() {
-
-
-
-
-
         cartRepository.getAllItem(getToken()).observeForever(new Observer<DataResponse>() {
             @Override
             public void onChanged(DataResponse dataResponse) {

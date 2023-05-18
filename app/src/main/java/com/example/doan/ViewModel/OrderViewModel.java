@@ -26,12 +26,8 @@ import java.util.Vector;
 
 
 public class OrderViewModel extends ViewModel {
-
     private MutableLiveData<List<Order>> listOrder = new MutableLiveData<List<Order>>();
     private MutableLiveData<Boolean> isOrder = new MutableLiveData<>();
-
-
-
 
     private OrderRepository orderRepository ;
     private CategoryRepository  categoryRepository ;

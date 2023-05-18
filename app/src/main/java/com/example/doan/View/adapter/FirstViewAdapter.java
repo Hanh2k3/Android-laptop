@@ -29,14 +29,14 @@ public class FirstViewAdapter extends PagerAdapter {
     } ;
 
     private  String[] titles = {
-            "Learn",
-            "Create",
+            "Wellcome to Buynow",
+            "A great shopping experience",
             "Enjoy"
     } ;
     private String[] descs = {
-            "lorem  ipsum dolor contraint spaces dolor ipsum loremters termainal lorem ispsum contanirnts.",
-            "lorem  ipsum dolor contraint spaces dolor ipsum loremters termainal lorem ispsum contanirnts.",
-            "lorem  ipsum dolor contraint spaces dolor ipsum loremters termainal lorem ispsum contanirnts."
+            "Buynow is one of the leading companies in the distribution of laptop products.",
+            "We give you a great shopping experience.",
+            "Enjoy these wonderful moments your way."
     };
 
     @Override
