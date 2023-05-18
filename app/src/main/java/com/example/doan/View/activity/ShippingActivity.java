@@ -35,18 +35,20 @@ public class ShippingActivity extends AppCompatActivity {
     private FloatingActionButton btnNew ;
 
     private ImageView back ;
+    private  Intent intent ;
+    private  Boolean isBuy ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shiping_address);
-
         recyclerView = findViewById(R.id.rcAddress);
         btnNew = findViewById(R.id.addAddress_ShippingPage);
         back = findViewById(R.id.back_shipping);
-
         profileViewModel =  new ViewModelProvider(this).get(ProfileViewModel.class);
         profileViewModel.setValueAddress(getToken());
+        intent = getIntent();
+        isBuy = intent.getBooleanExtra("isBuy", false);
         profileViewModel.getListInforShipping().observeForever(new Observer<List<InforShipping>>() {
             @Override
             public void onChanged(List<InforShipping> inforShippings) {
@@ -58,25 +60,32 @@ public class ShippingActivity extends AppCompatActivity {
 
             }
         });
-
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ShippingActivity.this, AddAddressActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(ShippingActivity.this, AddAddressActivity.class);
+                    startActivity(intent);
             }
         });
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ShippingActivity.this, HomeActivity.class);
-                startActivity(i);
+
+                if(isBuy) {
+                    Intent i = new Intent(ShippingActivity.this, BuyNowActivity.class);
+                    Boolean isBuyNow = intent.getBooleanExtra("isBuyNow", false);
+                    if(isBuyNow) {
+                        Integer qty = intent.getIntExtra("qty",0);
+                        Integer laptopId = intent.getIntExtra("laptopId", 0);
+                        i.putExtra("qty", qty);
+                        i.putExtra("laptopId", laptopId);
+                    }
+                    startActivity(i);
+                } else {
+                    Intent i = new Intent(ShippingActivity.this, HomeActivity.class);
+                    startActivity(i);
+                }
             }
         });
-
-
-
-
     }
 }
