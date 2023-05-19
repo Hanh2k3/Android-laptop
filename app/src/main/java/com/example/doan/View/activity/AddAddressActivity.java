@@ -61,6 +61,7 @@ public class AddAddressActivity extends AppCompatActivity {
     private  Integer districtPosition;
     private  Integer wardPosition;
     private  Boolean isBuy  ;
+    private  Intent intent ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +78,8 @@ public class AddAddressActivity extends AppCompatActivity {
         feesViewModel = new ViewModelProvider(this).get(FeesViewModel.class);
         feesViewModel.setProvinceList();
 
-        Intent i = getIntent() ;
-        isBuy = i.getBooleanExtra("isBuy", false);
+        intent  = getIntent() ;
+        isBuy = intent.getBooleanExtra("isBuy", false);
         feesViewModel.getProvinceList().observeForever(new Observer<List<Province>>() {
             @Override
             public void onChanged(List<Province> provinces) {
@@ -161,9 +162,6 @@ public class AddAddressActivity extends AppCompatActivity {
 
             }
         });
-
-
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,8 +205,9 @@ public class AddAddressActivity extends AppCompatActivity {
                     Intent i = new Intent(AddAddressActivity.this, ShippingActivity.class);
                     startActivity(i);
                 } else {
+
                     Intent i = new Intent(AddAddressActivity.this, BuyNowActivity.class);
-                    Boolean isBuyNow = i.getBooleanExtra("isBuyNow", false);
+                    Boolean isBuyNow = intent.getBooleanExtra("isBuyNow", false);
                     if(isBuyNow) {
                         Integer qty = i.getIntExtra("qty", 0);
                         Integer laptopId = i.getIntExtra("laptopId", 0 );

@@ -221,7 +221,19 @@ public class BuyNowActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isHasAddress) {
-
+                    Intent i = new Intent(BuyNowActivity.this, ShippingActivity.class);
+                    i.putExtra("isBuy", true);
+                    if(isBuyNow) {
+                        i.putExtra("isBuyNow", true);
+                        i.putExtra("laptopId", laptopId);
+                        i.putExtra("qty", qty);
+                        Integer qty = i.getIntExtra("qty", 0);
+                        Integer laptopId = i.getIntExtra("laptopId", 0 );
+                        i.putExtra("isBuyNow", true);
+                        i.putExtra("qty", qty);
+                        i.putExtra("laptopId", laptopId);
+                    }
+                    startActivity(i);
                 } else {
                     Intent i = new Intent(BuyNowActivity.this, AddAddressActivity.class);
                     i.putExtra("isBuy", true);
@@ -229,6 +241,11 @@ public class BuyNowActivity extends AppCompatActivity {
                         i.putExtra("isBuyNow", true);
                         i.putExtra("laptopId", laptopId);
                         i.putExtra("qty", qty);
+                        Integer qty = i.getIntExtra("qty", 0);
+                        Integer laptopId = i.getIntExtra("laptopId", 0 );
+                        i.putExtra("isBuyNow", true);
+                        i.putExtra("qty", qty);
+                        i.putExtra("laptopId", laptopId);
                     }
                     startActivity(i);
                 }
