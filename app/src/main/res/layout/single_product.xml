@@ -36,7 +36,7 @@
         android:layout_marginRight="5dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/circle_bg"
+        android:background="@drawable/circle_bg_2"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout5">
 
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="15dp"
-            android:src="@drawable/ic_fav"
+            android:src="@drawable/ic_fav_2"
             app:tint="@color/mainText" />
 
     </LinearLayout>
@@ -69,6 +69,7 @@
             android:rating="5"
             android:scaleX=".4"
             android:scaleY=".4"
+            android:layout_marginStart="5dp"
             style="@style/Widget.AppCompat.RatingBar.Indicator"
             android:transformPivotX="0dp"
             android:transformPivotY="15dp" />
@@ -82,8 +83,8 @@
             android:paddingStart="5dp"
             android:paddingBottom="5dp"
             android:text="Brand Name"
-            android:textColor="@color/textAd"
-            android:textSize="13sp" />
+            android:textColor="#655E5E"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/productName_singleProduct"
@@ -94,6 +95,7 @@
             android:maxLines="1"
             android:text="Product Name"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:paddingStart="5dp"
             android:paddingBottom="5dp" />
 

@@ -34,6 +34,7 @@ import com.example.doan.View.adapter.ImageAdapter;
 import com.example.doan.View.adapter.LaptopAdapter;
 import com.example.doan.View.adapter.ViewPagerAdapter;
 import com.example.doan.View.adapter.ViewPagerDetailAdapter;
+import com.example.doan.View.fragment.HomeFragment;
 import com.example.doan.ViewModel.DetailViewModel;
 import com.example.doan.ViewModel.FeesViewModel;
 import com.example.doan.ViewModel.HomeViewModel;
@@ -64,6 +65,8 @@ public class DetailActivity extends AppCompatActivity {
     private Button btnBuyNow ;
     private Integer laptopId ;
     private  Integer qty ;
+    private TextView back_detail;
+    private TextView brand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +84,17 @@ public class DetailActivity extends AppCompatActivity {
         decrease = findViewById(R.id.decreseDetail);
         btnAddCart = findViewById(R.id.btnAddToCart); 
         btnBuyNow = findViewById(R.id.btnBuyNow);
+        brand = findViewById(R.id.productBrand_ProductDetailsPage);
         qtyCart = findViewById(R.id.quantityTvCartDetail);
+     back.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             Intent i =new Intent(DetailActivity.this, HomeFragment.class);
+             finish();
+             startActivity(i);
 
+         }
+     });
         qty = 1;
         
         // qty
@@ -121,7 +133,7 @@ public class DetailActivity extends AppCompatActivity {
                 rcListImage.setLayoutManager(new LinearLayoutManager(DetailActivity.this, LinearLayoutManager.HORIZONTAL, false));
                 rcListImage.setHasFixedSize(true);
                 rcListImage.setAdapter(new ImageAdapter(DetailActivity.this, listImage ));
-
+                brand.setText(laptop.getBrand().getBrandName());
                 tvLaptopName.setText(laptop.getLaptopName());
                 Locale locale = new Locale("vi", "VN");
                 NumberFormat nf = NumberFormat.getCurrencyInstance(locale);

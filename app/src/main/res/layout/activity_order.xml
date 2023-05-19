@@ -56,13 +56,6 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
         app:layout_constraintVertical_bias="0.958">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayoutOrder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabSelectedTextColor="#ED3F3F"
-            tools:layout_editor_absoluteX="1dp" />
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerOrder"
             android:layout_width="match_parent"
@@ -71,6 +64,14 @@
 
 
     </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabSelectedTextColor="#ED3F3F"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="45dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:text="Skip"
+            android:textStyle="bold"
             android:textColor="#050505" />
 
 
@@ -43,6 +44,7 @@
             android:layout_alignParentRight="true"
             android:background="@android:color/transparent"
             android:text="Next"
+            android:textStyle="bold"
             android:textColor="#151515" />
 
     </RelativeLayout>

@@ -35,7 +35,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/metropolis_regular"
             android:gravity="center"
-            android:text="Visual Search Result"
+            android:text="Category"
             android:textColor="@color/mainText"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,17 +67,6 @@
             android:textColor="@color/mainText"
             android:textSize="22sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:fontFamily="@font/metropolis_light"
-            android:maxLines="2"
-            android:text="similar results"
-            android:textColor="@color/mainText"
-            android:textSize="14sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

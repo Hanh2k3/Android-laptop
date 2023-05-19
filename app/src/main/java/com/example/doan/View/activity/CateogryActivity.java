@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.example.doan.Model.Laptop;
 import com.example.doan.R;
 import com.example.doan.View.adapter.LaptopAdapter;
+import com.example.doan.View.fragment.HomeFragment;
+import com.example.doan.View.fragment.ShopFragment;
 import com.example.doan.ViewModel.HomeViewModel;
 
 import java.security.Provider;
@@ -43,10 +45,12 @@ public class CateogryActivity extends AppCompatActivity {
         backView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i =new Intent(CateogryActivity.this, ShopFragment.class);
                 finish();
+                startActivity(i);
+
             }
         });
-
         categoryName.setText(name);
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);

@@ -23,18 +23,18 @@ public class FirstViewAdapter extends PagerAdapter {
     }
 
     private int[] images = {
-            R.drawable.p1,
-            R.drawable.p2,
-            R.drawable.p3,
+            R.drawable.ontechimage,
+            R.drawable.ontechimage,
+            R.drawable.ontechimage,
     } ;
 
     private  String[] titles = {
-            "Wellcome to Buynow",
+            "Wellcome to ONTECH",
             "A great shopping experience",
             "Enjoy"
     } ;
     private String[] descs = {
-            "Buynow is one of the leading companies in the distribution of laptop products.",
+            "ONTECH is one of the leading companies in the distribution of laptop products.",
             "We give you a great shopping experience.",
             "Enjoy these wonderful moments your way."
     };

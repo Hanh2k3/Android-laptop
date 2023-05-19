@@ -68,7 +68,7 @@ public class LaptopAdapter extends RecyclerView.Adapter<LaptopAdapter.LaptopHold
         Double value = Double.valueOf(laptop.getPrice()*laptop.getQty());
         Locale locale = new Locale("vi", "VN");
         NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
-        holder.laptopPrice.setText(nf.format(Double.valueOf(laptop.getPrice())) + "đ");
+        holder.laptopPrice.setText(nf.format(Double.valueOf(laptop.getPrice())) );
         holder.laptopName.setText(laptop.getLaptopName());
         holder.laptopBrand.setText(laptop.getBrand().getBrandName());
 

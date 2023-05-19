@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import com.example.doan.Model.Laptop;
 import com.example.doan.R;
 import com.example.doan.View.adapter.LaptopAdapter;
+import com.example.doan.View.fragment.HomeFragment;
 import com.example.doan.ViewModel.HomeViewModel;
 
 import java.util.List;
@@ -54,7 +55,9 @@ public class SearchActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i =new Intent(SearchActivity.this, HomeFragment.class);
                 finish();
+                startActivity(i);
             }
         });
     }

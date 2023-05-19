@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/splash_bg"
     tools:context=".View.activity.SignUpActivity">
 
-
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#4FF5B997" />
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"

@@ -40,11 +40,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="@dimen/splash_img"
-            android:layout_height="@dimen/splash_img"
+            android:layout_width="245dp"
+            android:layout_height="95dp"
             android:layout_gravity="center_horizontal"
-            android:contentDescription="ád"
-            android:src="@drawable/ic_app_icon" />
+            android:src="@drawable/ontechpng" />
 
         <LinearLayout
             android:id="@+id/llName"

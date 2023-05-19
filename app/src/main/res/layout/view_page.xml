@@ -8,25 +8,33 @@
 
     <ImageView
         android:id="@+id/imgViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:src="@drawable/p1"
+        android:layout_width="361dp"
+        android:layout_height="186dp"
         android:layout_marginTop="80dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/p1" />
 
     <TextView
         android:id="@+id/txtTitleViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:fontFamily="@font/metropolis_bold"
         android:gravity="center_horizontal"
-        android:textSize="30sp"/>
+        android:layout_marginTop="20dp"
+        android:text="anhquan"
+        android:textSize="32sp" />
 
     <TextView
         android:id="@+id/txtDescViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"/>
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/metropolis_regular"
+        android:text="heheh"
+        android:textAlignment="center"
+        android:textFontWeight="3"
+        android:textSize="16sp" />
 
 </LinearLayout>

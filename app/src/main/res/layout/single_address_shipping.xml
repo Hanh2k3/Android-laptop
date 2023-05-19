@@ -30,6 +30,7 @@
                 android:id="@+id/radioButtonAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
@@ -51,12 +52,13 @@
                     android:id="@+id/tvAddressShipping"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/metropolis_semibold"
+                    android:fontFamily="@font/metropolis_regular"
                     android:maxEms="12"
                     android:maxLines="1"
                     android:text="Address"
+                    android:layout_marginTop="14dp"
                     android:textColor="@color/mainText"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tvPhoneShipping"
